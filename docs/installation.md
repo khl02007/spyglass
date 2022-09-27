@@ -1,9 +1,6 @@
 Installation
 ===============
 
-[![Import test](https://github.com/LorenFrankLab/spyglass/actions/workflows/workflow.yml/badge.svg)](https://github.com/LorenFrankLab/spyglass/actions/workflows/workflow.yml)
-[![Nightly Test](https://github.com/LorenFrankLab/spyglass/actions/workflows/nightly.yml/badge.svg)](https://github.com/LorenFrankLab/spyglass/actions/workflows/nightly.yml)
-
 ## Setup
 
 ### Installing packages
