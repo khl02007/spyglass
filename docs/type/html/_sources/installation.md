@@ -1,32 +1,37 @@
 Installation
 ===============
 
-[![Import test](https://github.com/LorenFrankLab/spyglass/actions/workflows/workflow.yml/badge.svg)](https://github.com/LorenFrankLab/spyglass/actions/workflows/workflow.yml)
-[![Nightly Test](https://github.com/LorenFrankLab/spyglass/actions/workflows/nightly.yml/badge.svg)](https://github.com/LorenFrankLab/spyglass/actions/workflows/nightly.yml)
+## Installing packages
 
-## Setup
+`spyglass` can be installed via `pip`:
 
-### Installing packages
+```bash
+pip install spyglass-neuro
+```
 
-1. Clone this repository:
+Some of the pipeline requires installation of additional packages. For example, the spike sorting pipeline relies on `spikeinterface`. We recommend installing it direclty from the GitHub repo:
 
-   ```bash
-   git clone https://github.com/LorenFrankLab/spyglass.git
-   ```
+```bash
+pip install git+https://github.com/SpikeInterface/spikeinterface.git
+```
 
-2. Set up and activate a conda environment from `environment.yml`:
+You may also need to install individual sorting algorithms. For example, Loren Frank's lab at UCSF typically uses `mountainsort4`:
 
-   ```bash
-   cd spyglass
-   conda env create -f environment.yml
-   conda activate spyglass
-   ```
+```bash
+pip install mountainsort4
+```
 
-3. Install this repository:
+The LFP pipeline uses `ghostipy`:
 
-   ```bash
-   pip install -e .
-   ```
+```bash
+pip install ghostipy
+```
+
+WARNING: If you are on an M1 Mac, you need to install `pyfftw` via `conda` BEFORE installing `ghostipy`:
+
+```bash
+conda install -c conda-forge pyfftw
+```
 
 ### Setting up database access
 

@@ -1,29 +1,37 @@
 Installation
 ===============
 
-## Setup
+## Installing packages
 
-### Installing packages
+`spyglass` can be installed via `pip`:
 
-1. Clone this repository:
+```bash
+pip install spyglass-neuro
+```
 
-   ```bash
-   git clone https://github.com/LorenFrankLab/spyglass.git
-   ```
+Some of the pipeline requires installation of additional packages. For example, the spike sorting pipeline relies on `spikeinterface`. We recommend installing it direclty from the GitHub repo:
 
-2. Set up and activate a conda environment from `environment.yml`:
+```bash
+pip install git+https://github.com/SpikeInterface/spikeinterface.git
+```
 
-   ```bash
-   cd spyglass
-   conda env create -f environment.yml
-   conda activate spyglass
-   ```
+You may also need to install individual sorting algorithms. For example, Loren Frank's lab at UCSF typically uses `mountainsort4`:
 
-3. Install this repository:
+```bash
+pip install mountainsort4
+```
 
-   ```bash
-   pip install -e .
-   ```
+The LFP pipeline uses `ghostipy`:
+
+```bash
+pip install ghostipy
+```
+
+WARNING: If you are on an M1 Mac, you need to install `pyfftw` via `conda` BEFORE installing `ghostipy`:
+
+```bash
+conda install -c conda-forge pyfftw
+```
 
 ### Setting up database access
 

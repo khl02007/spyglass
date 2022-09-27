@@ -6,8 +6,8 @@ This documentaton is a Jupyter Book. However, it uses Sphinx functionality. File
 
 ## Generating Documentation
 
-- Go to /docs/
-- Run - pip install -r requirements.txt
+- Go to `docs/`
+- Run - `pip install -r requirements.txt`
 - Run -  `make clean && make html`
 
 After completion, go to - /docs/html. Open `index.html` in a browser.
