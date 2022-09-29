@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="Pipeline" href="5_linearization.html" /><link rel="prev" title="LFP" href="3_lfp.html" />
 
-    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-4.5.0, furo 2022.09.15"/>
-        <title>Pipeline - Spyglass 1.0.0 documentation</title>
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
+        <title>Pipeline - Spyglass 0.1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Spyglass 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Spyglass 0.1.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -150,7 +150,7 @@
     <img class="sidebar-logo" src="../../_static/spyglass.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Spyglass 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Spyglass 0.1.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -174,8 +174,15 @@
 <li class="toctree-l2"><a class="reference internal" href="docker_mysql_tutorial.html">MySQL Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../_autosummary/spyglass.html">API reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../_autosummary/spyglass.cli.html">spyglass.cli</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/spyglass.cli.cli.html">spyglass.cli.cli</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../how_to_contribute.html">How to Contribute</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../figurl_views.html">Figurl</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../session_groups.html">Session Groups</a></li>
 </ul>
@@ -471,7 +478,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Pipeline">
-<h1>Pipeline<a class="headerlink" href="#Pipeline" title="Permalink to this headline">#</a></h1>
+<h1>Pipeline<a class="headerlink" href="#Pipeline" title="Permalink to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -482,12 +489,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="What-is-this-pipeline?">
-<h2>What is this pipeline?<a class="headerlink" href="#What-is-this-pipeline?" title="Permalink to this headline">#</a></h2>
+<h2>What is this pipeline?<a class="headerlink" href="#What-is-this-pipeline?" title="Permalink to this heading">#</a></h2>
 <p>This data pipeline takes the 2D position (in video pixels) of the green and red LEDs tracked by Trodes, and computes: + head position (in cm) + head orientation (in radians) + head velocity (in cm/s) + head speed (in cm/s)</p>
 <p>We can then check the quality of the head position and direction by plotting the them on the video along with the oringal green and red LEDs.</p>
 <p>This notebook will take you through this process for one dataset.</p>
 <section id="1.-Loading-the-session-data">
-<h3>1. Loading the session data<a class="headerlink" href="#1.-Loading-the-session-data" title="Permalink to this headline">#</a></h3>
+<h3>1. Loading the session data<a class="headerlink" href="#1.-Loading-the-session-data" title="Permalink to this heading">#</a></h3>
 <p>First let us make sure that the session we want to analyze is inserted into the database:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -2441,7 +2448,7 @@ if (window.Jupyter !== undefined) {
 </div>
 </section>
 <section id="2.-Setting-the-parameters-for-running-the-position-pipeline">
-<h3>2. Setting the parameters for running the position pipeline<a class="headerlink" href="#2.-Setting-the-parameters-for-running-the-position-pipeline" title="Permalink to this headline">#</a></h3>
+<h3>2. Setting the parameters for running the position pipeline<a class="headerlink" href="#2.-Setting-the-parameters-for-running-the-position-pipeline" title="Permalink to this heading">#</a></h3>
 <p>The parameters for the position pipeline are set by the <code class="docutils literal notranslate"><span class="pre">PositionInfoParameters</span></code> table. <code class="docutils literal notranslate"><span class="pre">default</span></code> is the name of the standard set of parameters. As usual, if you want to change the parameters, you can insert your own into the table.</p>
 <p>The parameters are as follows:</p>
 <ul class="simple">
@@ -3072,7 +3079,7 @@ Text(0.5, 1.0, &#39;Raw Position&#39;)
 </div>
 </section>
 <section id="3.-Running-the-position-pipeline-and-retrieving-the-results">
-<h3>3. Running the position pipeline and retrieving the results<a class="headerlink" href="#3.-Running-the-position-pipeline-and-retrieving-the-results" title="Permalink to this headline">#</a></h3>
+<h3>3. Running the position pipeline and retrieving the results<a class="headerlink" href="#3.-Running-the-position-pipeline-and-retrieving-the-results" title="Permalink to this heading">#</a></h3>
 <p>Now that we have associated the parameters with the interval we want to run, we can finally run the pipeline for that interval.</p>
 <p>We run the pipeline using the <code class="docutils literal notranslate"><span class="pre">populate</span></code> method on the <code class="docutils literal notranslate"><span class="pre">IntervalPositionInfo</span></code> table.</p>
 <div class="nbinput docutils container">
@@ -3382,10 +3389,10 @@ Float64Index([1581886916.3153033, 1581886916.3486283, 1581886916.3819742,
 </div>
 </section>
 <section id="4.-Examining-the-results">
-<h3>4. Examining the results<a class="headerlink" href="#4.-Examining-the-results" title="Permalink to this headline">#</a></h3>
+<h3>4. Examining the results<a class="headerlink" href="#4.-Examining-the-results" title="Permalink to this heading">#</a></h3>
 <p>We should always spot check our results to verify that the pipeline worked correctly.</p>
 <section id="Plots">
-<h4>Plots<a class="headerlink" href="#Plots" title="Permalink to this headline">#</a></h4>
+<h4>Plots<a class="headerlink" href="#Plots" title="Permalink to this heading">#</a></h4>
 <p>Let’s plot some of the variables first:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -3474,7 +3481,7 @@ Text(0.5, 1.0, &#39;Head Velocity&#39;)
 </div>
 </section>
 <section id="Video">
-<h4>Video<a class="headerlink" href="#Video" title="Permalink to this headline">#</a></h4>
+<h4>Video<a class="headerlink" href="#Video" title="Permalink to this heading">#</a></h4>
 <p>These look reasonable but it is better to evaluate these variables by plotting the results on the video where we can see how they correspond.</p>
 <p>The video will appear in the current working directory when it is done.</p>
 <div class="nbinput docutils container">
@@ -3509,7 +3516,7 @@ Making video...
 </section>
 </section>
 <section id="5.-Upsampling-position-data">
-<h3>5. Upsampling position data<a class="headerlink" href="#5.-Upsampling-position-data" title="Permalink to this headline">#</a></h3>
+<h3>5. Upsampling position data<a class="headerlink" href="#5.-Upsampling-position-data" title="Permalink to this heading">#</a></h3>
 <p>Sometimes you need the position data to be in a different rate than it is sampled in, such as when decoding in 2 ms time bins. You can use the upsampling parameters to get this data: + <code class="docutils literal notranslate"><span class="pre">is_upsampled</span></code> controls whether upsampling happens. If it is 1 then there is upsampling, and if it is 0 then upsampling does not happen. + <code class="docutils literal notranslate"><span class="pre">upsampling_sampling_rate</span></code> is the rate you want to upsample to. For example position is typically recorded at 33 frames per seconds and you may want to upsample up to 500
 frames per second. + <code class="docutils literal notranslate"><span class="pre">upsampling_interpolation_method</span></code> is the interpolation method used for upsampling. It is set to linear by default. See the methods available for pandas.DataFrame.interpolate to get a list of the methods.</p>
 <div class="nbinput docutils container">
@@ -4097,7 +4104,9 @@ Text(0.5, 1.0, &#39;Upsampled Head Velocity&#39;)
 </div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>

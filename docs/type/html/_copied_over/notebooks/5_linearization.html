@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="MySQL Docker tutorial" href="docker_mysql_tutorial.html" /><link rel="prev" title="Pipeline" href="4_position_info.html" />
 
-    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-4.5.0, furo 2022.09.15"/>
-        <title>Pipeline - Spyglass 1.0.0 documentation</title>
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
+        <title>Pipeline - Spyglass 0.1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand">Spyglass 1.0.0 documentation</div></a>
+      <a href="../../index.html"><div class="brand">Spyglass 0.1.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -150,7 +150,7 @@
     <img class="sidebar-logo" src="../../_static/spyglass.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Spyglass 1.0.0 documentation</span>
+  <span class="sidebar-brand-text">Spyglass 0.1.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -174,8 +174,15 @@
 <li class="toctree-l2"><a class="reference internal" href="docker_mysql_tutorial.html">MySQL Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../_autosummary/spyglass.html">API reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../_autosummary/spyglass.cli.html">spyglass.cli</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/spyglass.cli.cli.html">spyglass.cli.cli</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../how_to_contribute.html">How to Contribute</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../figurl_views.html">Figurl</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../session_groups.html">Session Groups</a></li>
 </ul>
@@ -471,7 +478,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Pipeline">
-<h1>Pipeline<a class="headerlink" href="#Pipeline" title="Permalink to this headline">#</a></h1>
+<h1>Pipeline<a class="headerlink" href="#Pipeline" title="Permalink to this heading">#</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -482,10 +489,10 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="What-is-this-pipeline?">
-<h2>What is this pipeline?<a class="headerlink" href="#What-is-this-pipeline?" title="Permalink to this headline">#</a></h2>
+<h2>What is this pipeline?<a class="headerlink" href="#What-is-this-pipeline?" title="Permalink to this heading">#</a></h2>
 <p>This pipeline takes 2D position data from the <code class="docutils literal notranslate"><span class="pre">IntervalPositionInfo</span></code> table and “linearizes” it to 1D position.</p>
 <section id="1.-Retrieving-2D-position-from-the-IntervalPositionInfo-table">
-<h3>1. Retrieving 2D position from the <code class="docutils literal notranslate"><span class="pre">IntervalPositionInfo</span></code> table<a class="headerlink" href="#1.-Retrieving-2D-position-from-the-IntervalPositionInfo-table" title="Permalink to this headline">#</a></h3>
+<h3>1. Retrieving 2D position from the <code class="docutils literal notranslate"><span class="pre">IntervalPositionInfo</span></code> table<a class="headerlink" href="#1.-Retrieving-2D-position-from-the-IntervalPositionInfo-table" title="Permalink to this heading">#</a></h3>
 <p>To retrieve 2D position data, we need to specify a nwb file, an position time interval, and the set of parameters used to compute the position info.</p>
 <p>First we specify the nwb file and get the name of the copied version (without the ephys data) that is used as a key.</p>
 <div class="nbinput docutils container">
@@ -2615,7 +2622,7 @@ Text(0.5, 1.0, &#39;Head Position&#39;)
 </div>
 </section>
 <section id="2.-Specifying-the-track-graph-for-linearization">
-<h3>2. Specifying the track graph for linearization<a class="headerlink" href="#2.-Specifying-the-track-graph-for-linearization" title="Permalink to this headline">#</a></h3>
+<h3>2. Specifying the track graph for linearization<a class="headerlink" href="#2.-Specifying-the-track-graph-for-linearization" title="Permalink to this heading">#</a></h3>
 <p>In order to linearize the data, we must build a graph of nodes and edges that specify the geometry of the track in 1D and 2D. This will be referred to as the <code class="docutils literal notranslate"><span class="pre">TrackGraph</span></code>.</p>
 <p>We do this by specifying four variables: 1. <code class="docutils literal notranslate"><span class="pre">node_positions</span></code> are the 2D positions of the graph (in cm) 2. <code class="docutils literal notranslate"><span class="pre">edges</span></code> specify how the nodes are connected. Each edge consists of a pair of nodes. Each node is labeled by their respective index in <code class="docutils literal notranslate"><span class="pre">node_positions</span></code>. For example, (79.910, 216.720) is the 2D position of node 0 and (183.784, 45.375) is the 2D position of node 8. So specifying (0, 8) means there is an edge between node 0 and node 8 3. <code class="docutils literal notranslate"><span class="pre">linear_edge_order</span></code> specifies how the edges are
 laid out in linear space in <em>order</em>. As before, each edge consists of a pair of nodes, which are labeled by their index. The order of the nodes controls their order in 1D space. So edge (0, 1) connects node 0 and node 1 and node 0 will be placed in linear position space before node 1. Specifying edge (1, 0) would reverse the linear positions for that edge. 4. <code class="docutils literal notranslate"><span class="pre">linear_edge_spacing</span></code> specifies the spacing between each edge. This can either by a single number or be an array the length of the
@@ -2812,7 +2819,7 @@ number of gaps between edges. If it is a single number, all edges will have a ga
 </div>
 </section>
 <section id="3.-Setting-up-the-parameters-for-linearization">
-<h3>3. Setting up the parameters for linearization<a class="headerlink" href="#3.-Setting-up-the-parameters-for-linearization" title="Permalink to this headline">#</a></h3>
+<h3>3. Setting up the parameters for linearization<a class="headerlink" href="#3.-Setting-up-the-parameters-for-linearization" title="Permalink to this heading">#</a></h3>
 <p>There are several other parameters we can set for linearization. They are only relevant if you choose to use the HMM method of linearization.</p>
 <p>By default, linearization assigns each 2D position to its nearest point on the track graph. This is then translated into 1D space.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">use_hmm</span></code> is selected, then an HMM is used to assign these points. The HMM can be useful because it takes into account the prior position and edge the animal is on. This can keep the position from suddenly jumping to another edge such as in the case of an intersection or if the reward wells are close to each other and the animal’s head position swings closer to the other reward well (even though it is physically on another edge of the track).</p>
@@ -3122,7 +3129,7 @@ Writing new NWB file chimi20200216_new_GBGCXYMIWB.nwb
 </div>
 </section>
 <section id="4.-Examining-the-data">
-<h3>4. Examining the data<a class="headerlink" href="#4.-Examining-the-data" title="Permalink to this headline">#</a></h3>
+<h3>4. Examining the data<a class="headerlink" href="#4.-Examining-the-data" title="Permalink to this heading">#</a></h3>
 <p>After populating the table, we can use the <code class="docutils literal notranslate"><span class="pre">fetch1_dataframe</span></code> method to retreive the linear position data.</p>
 <p>The dataframe has several variables: + <code class="docutils literal notranslate"><span class="pre">linear_position</span></code> is the 1D linearized position + <code class="docutils literal notranslate"><span class="pre">track_segment_id</span></code> is the index number of the edges given to track graph + <code class="docutils literal notranslate"><span class="pre">projected_x_position</span></code>, <code class="docutils literal notranslate"><span class="pre">projected_y_position</span></code> is the 2D position projected to the track graph</p>
 <p>Time is set as the index of the dataframe</p>
@@ -3329,9 +3336,9 @@ Text(0.5, 1.0, &#39;Linear Position&#39;)
 </div>
 </section>
 <section id="5.-Interactively-selecting-the-track-graph-nodes-and-edges-[Work-in-Progress]">
-<h3>5. Interactively selecting the track graph nodes and edges [Work in Progress]<a class="headerlink" href="#5.-Interactively-selecting-the-track-graph-nodes-and-edges-[Work-in-Progress]" title="Permalink to this headline">#</a></h3>
+<h3>5. Interactively selecting the track graph nodes and edges [Work in Progress]<a class="headerlink" href="#5.-Interactively-selecting-the-track-graph-nodes-and-edges-[Work-in-Progress]" title="Permalink to this heading">#</a></h3>
 <section id="NodePicker">
-<h4>NodePicker<a class="headerlink" href="#NodePicker" title="Permalink to this headline">#</a></h4>
+<h4>NodePicker<a class="headerlink" href="#NodePicker" title="Permalink to this heading">#</a></h4>
 <p>The linearization heavily depends on how you specify the track graph. Setting the node positions and edges can be diffcult. To help simplify this process, we can use the <code class="docutils literal notranslate"><span class="pre">NodePicker</span></code> to interactively set the node positions and edges based on the video of the track.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -3419,7 +3426,7 @@ array([], dtype=float64)
 </section>
 </section>
 <section id="Selector">
-<h2>Selector<a class="headerlink" href="#Selector" title="Permalink to this headline">#</a></h2>
+<h2>Selector<a class="headerlink" href="#Selector" title="Permalink to this heading">#</a></h2>
 <p>We can also draw a 2d polygon around the track and attempt to recover the graph.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
@@ -3558,7 +3565,9 @@ Try holding the &#39;ctrl&#39; key to move a single vertex.
 </div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
