@@ -3,79 +3,44 @@ name: Build Documentation
 on:
   push:
     branches:
-      - master
+      - documentation
 
 jobs:
   build-documentation:
     runs-on: ${{ matrix.os }}
-    if: ${{ github.ref == 'refs/heads/documentation' }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]  #, macos-latest, windows-latest]
     env:
-      OS: ${{ matrix.os }}
-      PYTHON: '3.8'
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-    #   SPYGLASS_BASE_DIR: ./data
-    #   KACHERY_STORAGE_DIR: ./data/kachery-storage
-    #   DJ_SUPPORT_FILEPATH_MANAGEMENT: True
-    # services:
-    #   datajoint_test_server:
-    #     image: datajoint/mysql
-    #     ports:
-    #     - 3306:3306
-    #     options: >-
-    #       -e MYSQL_ROOT_PASSWORD=tutorial
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - name: Git checkout
+    - name: Checkout documentation branch
       uses: actions/checkout@v3
       with:
-        fetch-depth: '0'
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Rebase with master
-      run: |
-        git config --global user.email "zoldello@gmail.com"
-        git config --global user.name "Phil - Documentation update done via github action"
+        ref: documentation
 
-        git fetch
-        git rebase origin/master
-        git push origin documentation
-    # - name: Rebase dev/test branches on master
-    #   uses: parkhub/github-action-release-rebase@main
-    #   with:
-    #     base_ref: master
-    #     head_branches: documentation
-    - name: Cancel Workflow Action
-      uses: styfle/cancel-workflow-action@0.6.0
+    - name: Merge master -> documentation
+      uses: devmasx/merge-branch@master
       with:
-        access_token: ${{ github.token }}
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Set up conda environment
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: spyglass
-        environment-file: environment.yml
-    - name: Install test requirements
-      shell: bash -l {0}
-      run: |
-        pip install -r requirements-dev.txt
-    - name: Install spyglass
-      shell: bash -l {0}
-      run: |
-        pip install -e .
-    - name: Install Documentation Requirements
-      working-directory: docs/
-      shell: bash -l {0}
-      run: |
-        pip install -r requirements.txt
+        type: now
+        from_branch: master
+        target_branch: documentation
+        github_token: ${{ github.token }}
+
+    - name: Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v2.1.1
+
+    - name: Install Python packages
+      run: pip install -r requirements-dev.txt
+    
+    - name: Install `spyglass`
+      run: pip install -e .
+
     - name: Rebuild documentation
       working-directory: docs/
-      shell: bash -l {0}
+      run: make clean && make html    
+    
+    - name: Commit results
       run: |
-        make clean && make html    
+        git config --local user.name "$GITHUB_ACTOR"
+        git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git add docs/*
+        git commit -m 'Re-build documentation site' || echo "No changes to commit"
+        git push origin documentation || echo "No changes to commit"
