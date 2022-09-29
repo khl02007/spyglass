@@ -16,13 +16,13 @@ jobs:
       with:
         ref: documentation
 
-    - name: Merge master -> documentation
-      uses: devmasx/merge-branch@master
-      with:
-        type: now
-        from_branch: master
-        target_branch: documentation
-        github_token: ${{ github.token }}
+    # - name: Merge master -> documentation
+    #   uses: devmasx/merge-branch@master
+    #   with:
+    #     type: now
+    #     from_branch: master
+    #     target_branch: documentation
+    #     github_token: ${{ github.token }}
 
     - name: Setup Miniconda
       uses: conda-incubator/setup-miniconda@v2.1.1
