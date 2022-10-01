@@ -3,12 +3,12 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="NWB-Datajoint Spike Sorting Tutorial" href="1_spikesorting.html" /><link rel="prev" title="Jupyter Notebooks Examples" href="../../tutorials.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="Spyglass Spike Sorting Tutorial" href="1_spikesorting.html" /><link rel="prev" title="Jupyter Notebooks Examples" href="../../tutorials.html" />
 
-    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
-        <title>NWB-Datajoint tutorial 0 - Spyglass 0.1.1 documentation</title>
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
+        <title>Spyglass tutorial 0 - Spyglass 0.1.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/datajoint_header.css" />
     
@@ -207,7 +207,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -477,10 +478,10 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<section id="NWB-Datajoint-tutorial-0">
-<h1>NWB-Datajoint tutorial 0<a class="headerlink" href="#NWB-Datajoint-tutorial-0" title="Permalink to this heading">#</a></h1>
+<section id="Spyglass-tutorial-0">
+<h1>Spyglass tutorial 0<a class="headerlink" href="#Spyglass-tutorial-0" title="Permalink to this heading">#</a></h1>
 <p><strong>Note: make a copy of this notebook and run the copy to avoid git conflicts in the future</strong></p>
-<p>This is the zeroth in a multi-part tutorial on the NWB-Datajoint pipeline used in Loren Frank’s lab, UCSF. It gives a general introduction to Datajoint and shows how to insert an NWB file into the Datajoint database, inspect and query the data, and delete it.</p>
+<p>This is the zeroth in a multi-part tutorial on the Spyglass pipeline used in Loren Frank’s lab, UCSF. It gives a general introduction to Datajoint and shows how to insert an NWB file into the Datajoint database, inspect and query the data, and delete it.</p>
 <p>Let’s start by importing the <code class="docutils literal notranslate"><span class="pre">spyglass</span></code> package, along with a few others.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -489,46 +490,34 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">spyglass</span> <span class="k">as</span> <span class="nn">nd</span>
+<span class="kn">import</span> <span class="nn">spyglass</span> <span class="k">as</span> <span class="nn">sg</span>
 <span class="kn">import</span> <span class="nn">datajoint</span> <span class="k">as</span> <span class="nn">dj</span>
 
 <span class="c1"># ignore datajoint+jupyter async warnings</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">ResourceWarning</span><span class="p">)</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
-</pre></div>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">ResourceWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">UserWarning</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We also import a bunch of tables so that we can call them easily</span>
-<span class="kn">from</span> <span class="nn">spyglass.common</span> <span class="kn">import</span> <span class="p">(</span><span class="n">RawPosition</span><span class="p">,</span> <span class="n">HeadDir</span><span class="p">,</span> <span class="n">Speed</span><span class="p">,</span> <span class="n">LinPos</span><span class="p">,</span> <span class="n">StateScriptFile</span><span class="p">,</span> <span class="n">VideoFile</span><span class="p">,</span>
-                                  <span class="n">DataAcquisitionDevice</span><span class="p">,</span> <span class="n">CameraDevice</span><span class="p">,</span> <span class="n">Probe</span><span class="p">,</span>
-                                  <span class="n">DIOEvents</span><span class="p">,</span>
-                                  <span class="n">ElectrodeGroup</span><span class="p">,</span> <span class="n">Electrode</span><span class="p">,</span> <span class="n">Raw</span><span class="p">,</span> <span class="n">SampleCount</span><span class="p">,</span>
-                                  <span class="n">LFPSelection</span><span class="p">,</span> <span class="n">LFP</span><span class="p">,</span> <span class="n">LFPBandSelection</span><span class="p">,</span> <span class="n">LFPBand</span><span class="p">,</span>
-                                  <span class="n">SortGroup</span><span class="p">,</span> <span class="n">SpikeSorting</span><span class="p">,</span> <span class="n">SpikeSorter</span><span class="p">,</span> <span class="n">SpikeSorterParameters</span><span class="p">,</span>
-                                  <span class="n">SpikeSortingWaveformParameters</span><span class="p">,</span> <span class="n">SpikeSortingParameters</span><span class="p">,</span> <span class="n">SpikeSortingMetrics</span><span class="p">,</span> <span class="n">CuratedSpikeSorting</span><span class="p">,</span>
-                                  <span class="n">AutomaticCurationSpikeSortingParameters</span><span class="p">,</span>
-                                  <span class="n">PositionSource</span><span class="p">,</span>
-                                  <span class="n">FirFilter</span><span class="p">,</span>
-                                  <span class="n">IntervalList</span><span class="p">,</span> <span class="n">SortInterval</span><span class="p">,</span>
-                                  <span class="n">Lab</span><span class="p">,</span> <span class="n">LabMember</span><span class="p">,</span> <span class="n">LabTeam</span><span class="p">,</span> <span class="n">Institution</span><span class="p">,</span>
-                                  <span class="n">BrainRegion</span><span class="p">,</span>
-                                  <span class="n">SensorData</span><span class="p">,</span>
-                                  <span class="n">Session</span><span class="p">,</span> <span class="n">ExperimenterList</span><span class="p">,</span>
-                                  <span class="n">Subject</span><span class="p">,</span>
-                                  <span class="n">Task</span><span class="p">,</span> <span class="n">TaskEpoch</span><span class="p">,</span>
-                                  <span class="n">Nwbfile</span><span class="p">,</span> <span class="n">AnalysisNwbfile</span><span class="p">,</span> <span class="n">NwbfileKachery</span><span class="p">,</span> <span class="n">AnalysisNwbfileKachery</span><span class="p">)</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We also import spyglass.common so we can call tables more easily</span>
+<span class="kn">import</span> <span class="nn">spyglass.common</span> <span class="k">as</span> <span class="nn">sgc</span>
+
+<span class="c1"># We import spyglass.data_import to allow for inserting an NWB file into the database</span>
+<span class="kn">import</span> <span class="nn">spyglass.data_import</span> <span class="k">as</span> <span class="nn">sdi</span>
+<br/></pre></div>
 </div>
 </div>
 <section id="Visualizing-the-database">
 <h2>Visualizing the database<a class="headerlink" href="#Visualizing-the-database" title="Permalink to this heading">#</a></h2>
-<p>Datajoint enables users to use Python to build and interact with a <em>relational database</em>, which is a fancy way of saying “a set of tables that are related to one another in some way.” The following diagram (called <em>entity relationship diagram</em>) shows all the tables in our database and their relationships.</p>
+<p>Datajoint enables users to use Python to build and interact with a <em>Relational Database</em>. A <em>Relational Database</em> stores and provides access to data stored in row-features and column-features. Each row provide information about different features of an individivial object while each column provide information about a single feature for a collection of objects. It supports the ability to create a new object, read an existing object, update an existing object and delete an object.</p>
+<p>The following diagram (called <em>entity relationship diagram</em>) shows all the tables in our database and their relationships.</p>
 <p>Polygons are tables: * Blue oval: tables whose entries are imported from external files (e.g. NWB file). * Green rectangle: tables whose entries are entered manually. * Red circle: tables whose entries are computed from entries of other tables. * No shape (only text): tables whose entries are part of the table upstream</p>
 <p>Lines are <em>dependencies</em> between tables: * Bold lines: downstream table inherits the <em>primary key</em> ^ of upstream table as its sole primary key * Solid lines: downstream table inherits the primary key of upstream table as part of its primary key * Dashed lines: downstream table inherits the primary key of upstream table as non-primary key</p>
 <p>^ Primary key: a set of attributes (i.e. column names) used to uniquely define an entry (i.e. a row)</p>
@@ -537,40 +526,48 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Draw tables that are three levels below and one level above Session</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">ERD</span><span class="p">(</span><span class="n">Session</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">3</span>
-</pre></div>
+<span class="n">dj</span><span class="o">.</span><span class="n">ERD</span><span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Session</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
+<br/></pre></div>
 </div>
 </div>
 </section>
 <section id="Example-data">
 <h2>Example data<a class="headerlink" href="#Example-data" title="Permalink to this heading">#</a></h2>
-<p>Now that we have a general idea of how our database is organized, we will try inserting new data to it. We assume that the data is a neural recording (along with other auxiliary data) that has already been converted to the NWB format. For the purposes of this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">beans20190718.nwb</span></code>. If you’re accessing the Frank lab database on the UCSF network, this file can be found in <code class="docutils literal notranslate"><span class="pre">/stelmo/nwb/raw</span></code> directory (assuming you have mounted <code class="docutils literal notranslate"><span class="pre">stelmo</span></code> at <code class="docutils literal notranslate"><span class="pre">/</span></code>). If you do not have access
-to Frank lab database, then download <code class="docutils literal notranslate"><span class="pre">beans20190718.nwb</span></code> from <a class="reference external" href="https://www.dropbox.com/s/srra33e0igaj5rm/beans20190718.nwb?dl=0">here</a> - it is rather big (~ 70 GB) so be aware of that.</p>
-<p>Once you have the NWB file, you should copy it and rename the copy to something unique (e.g. <code class="docutils literal notranslate"><span class="pre">beans20190718_yourname.nwb</span></code>). This is because many people will be using this example file to practice inserting data, and a file can only be inserted once (the file name acts as a <em>primary key</em> in the <code class="docutils literal notranslate"><span class="pre">Session</span></code> table).</p>
+<p>Now that we have a general idea of how our database is organized, we will try inserting new data to it. We assume that the data is a neural recording (along with other auxiliary data) that has already been converted to the NWB format. For the purposes of this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">montague20200802.nwb</span></code>. If you’re accessing the Frank lab database on the UCSF network, this file can be found in <code class="docutils literal notranslate"><span class="pre">/stelmo/nwb/raw</span></code> directory (assuming you have mounted <code class="docutils literal notranslate"><span class="pre">stelmo</span></code> at <code class="docutils literal notranslate"><span class="pre">/</span></code>). If you do not have
+access to Frank lab database, then download <code class="docutils literal notranslate"><span class="pre">montague20200802.nwb</span></code> from <a class="reference external" href="https://www.dropbox.com/s/srra33e0igaj5rm/montague20200802.nwb?dl=0">here</a> - it is rather big (~ 70 GB) so be aware of that.</p>
+<p>Once you have the NWB file, you should copy it and rename the copy to something unique (e.g. <code class="docutils literal notranslate"><span class="pre">montague20200802_yourname.nwb</span></code>). This is because many people will be using this example file to practice inserting data, and a file can only be inserted once (the file name acts as a <em>primary key</em> in the <code class="docutils literal notranslate"><span class="pre">Session</span></code> table).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the name of the file that you copied and renamed; make sure it&#39;s something unique.</span>
-<span class="n">nwb_file_name</span> <span class="o">=</span> <span class="s1">&#39;beans20190718.nwb&#39;</span>
+<span class="n">nwb_file_name</span> <span class="o">=</span> <span class="s2">&quot;montague20200802_tutorial.nwb&quot;</span>
 <span class="n">filename</span><span class="p">,</span> <span class="n">file_extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">nwb_file_name</span><span class="p">)</span>
 <span class="c1"># This is a copy of the original nwb file, except it doesn&#39;t contain the raw data (for storage reasons)</span>
-<span class="n">nwb_file_name2</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">file_extension</span>
+<span class="n">nwb_copy_file_name</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">file_extension</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nwb_file_name</span>
+<br/></pre></div>
 </div>
 </div>
 </section>
 <section id="Inserting-data">
 <h2>Inserting data<a class="headerlink" href="#Inserting-data" title="Permalink to this heading">#</a></h2>
 <p>As you may know, the NWB file contains a lot of information, such as information about the experimenter (e.g. who did the experiment, where was it done, etc); the animal’s behavior (e.g. video recording of the animal’s position in an environment during the experiment); the neural activity (extracellular recording of multiple brain areas) etc. We wish to enter this information into the tables of our Datajoint database so that we can easily access them later. If we have an NWB file that has been
-properly generated, this is straightforward: just run the <code class="docutils literal notranslate"><span class="pre">nd.insert_session</span></code> function, which will populate many of the tables automatically. Let’s do this for our example NWB file.</p>
+properly generated, this is straightforward: just run the <code class="docutils literal notranslate"><span class="pre">sg.insert_session</span></code> function, which will populate many of the tables automatically. Let’s do this for our example NWB file.</p>
 <p>Note: this may take a while because it makes a copy of the NWB file.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nd</span><span class="o">.</span><span class="n">insert_sessions</span><span class="p">(</span><span class="n">nwb_file_name</span><span class="p">)</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sdi</span><span class="o">.</span><span class="n">insert_sessions</span><span class="p">(</span><span class="n">nwb_file_name</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 </section>
@@ -581,28 +578,28 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lab</span><span class="p">()</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">Lab</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
-<p>There is only one attribute (<code class="docutils literal notranslate"><span class="pre">lab_name</span></code>) and one entry (<code class="docutils literal notranslate"><span class="pre">Loren</span> <span class="pre">Frank</span></code>) in this table. Note that even though <code class="docutils literal notranslate"><span class="pre">Lab</span></code> is one of the tables that has to be manually entered (i.e. the green rectangles in our ERD), <code class="docutils literal notranslate"><span class="pre">nd.insert_sessions</span></code> populates it from the NWB file.</p>
+<p>There is only one attribute (<code class="docutils literal notranslate"><span class="pre">lab_name</span></code>) and two entries (<code class="docutils literal notranslate"><span class="pre">Loren</span> <span class="pre">Frank</span></code>, <code class="docutils literal notranslate"><span class="pre">Giocomo</span></code>) in this table. Note that even though <code class="docutils literal notranslate"><span class="pre">Lab</span></code> is one of the tables that has to be manually entered (i.e. the green rectangles in our ERD), <code class="docutils literal notranslate"><span class="pre">sg.insert_sessions</span></code> populates it from the NWB file.</p>
 <p>Let’s look at a more interesting table: <code class="docutils literal notranslate"><span class="pre">Session</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Session</span><span class="p">()</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
-<p>This session has multiple attributes. The attributes that make up the primary key are shown in bold. In this case, there is only one attribute in the primary key: <code class="docutils literal notranslate"><span class="pre">nwb_file</span> <span class="pre">name</span></code>. Given that many downstream tables are connected to <code class="docutils literal notranslate"><span class="pre">Session</span></code> via bold lines, you can use this attribute to uniquely define data entries in many tables in our database.</p>
+<p>This session has multiple attributes. The attributes that make up the primary key are shown in bold. In this case, there is only one attribute in the primary key: <code class="docutils literal notranslate"><span class="pre">nwb_file_name</span></code>. Given that many downstream tables are connected to <code class="docutils literal notranslate"><span class="pre">Session</span></code> via bold lines, you can use this attribute to uniquely define data entries in many tables in our database.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># can also look at the docstring</span>
-<span class="n">Session</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">Session</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <p>To look at specific entries from a table, include the appropriate condition with the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator. The condition must be in the form of a key-value pair, or a dictionary. As an example, let’s view only the entry whose <code class="docutils literal notranslate"><span class="pre">nwb_file_name</span></code> is our example NWB file in <code class="docutils literal notranslate"><span class="pre">Session</span></code>:</p>
@@ -610,8 +607,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <p>Now let’s go to a downstream table: <code class="docutils literal notranslate"><span class="pre">Raw</span></code>. This table is connected to <code class="docutils literal notranslate"><span class="pre">Session</span></code> table with a bold line, so it has the same primary key.</p>
@@ -619,8 +616,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Raw</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">Raw</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">IntervalList</span></code> table is connected to <code class="docutils literal notranslate"><span class="pre">Session</span></code> table with a solid line, as it inherits <code class="docutils literal notranslate"><span class="pre">nwb_file_name</span></code> as one of the two attributes that make up the primary key. This means that you need to know both <code class="docutils literal notranslate"><span class="pre">nwb_file_name</span></code> and <code class="docutils literal notranslate"><span class="pre">interval_list_name</span></code> to uniquely identify an entry.</p>
@@ -628,8 +625,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <p>As you can see, some of the data is shown in the table (e.g. <code class="docutils literal notranslate"><span class="pre">interval_list_name</span></code>) while others are obscured (e.g. <code class="docutils literal notranslate"><span class="pre">valid_times</span></code> are shown as <code class="docutils literal notranslate"><span class="pre">=BLOB=</span></code>). To inspect the data, use the <code class="docutils literal notranslate"><span class="pre">fetch</span></code> (for getting multiple entries) or <code class="docutils literal notranslate"><span class="pre">fetch1</span></code> (for getting just one entry) methods. The following query returns <code class="docutils literal notranslate"><span class="pre">valid_times</span></code> of an interval list called <code class="docutils literal notranslate"><span class="pre">04_r2</span></code>.</p>
@@ -637,8 +634,11 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">,</span> <span class="s1">&#39;interval_list_name&#39;</span><span class="p">:</span><span class="s1">&#39;04_r2&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">fetch1</span><span class="p">(</span><span class="s1">&#39;valid_times&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">sgc</span><span class="o">.</span><span class="n">IntervalList</span>
+    <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">,</span> <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;04_r2&quot;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch1</span><span class="p">(</span><span class="s2">&quot;valid_times&quot;</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <p>Query supports many operations and conditions - just make sure the conditions are in the form of a dictionary. We have already seen that <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> represents the set-theoretic intersection. <code class="docutils literal notranslate"><span class="pre">-</span></code>, on the other hand, is like the set-theoretic complement. The following query returns all <code class="docutils literal notranslate"><span class="pre">interval_list_name</span></code> that is not <code class="docutils literal notranslate"><span class="pre">01_s1</span></code> or <code class="docutils literal notranslate"><span class="pre">04_r2</span></code>.</p>
@@ -646,9 +646,14 @@ properly generated, this is straightforward: just run the <code class="docutils 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(((</span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">})</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;interval_list_name&#39;</span><span class="p">:</span><span class="s1">&#39;01_s1&#39;</span><span class="p">})</span>
-                                                    <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;interval_list_name&#39;</span><span class="p">:</span><span class="s1">&#39;04_r2&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;interval_list_name&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="p">(</span>
+        <span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">})</span>
+        <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;01_s1&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="o">-</span> <span class="p">{</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;04_r2&quot;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <p>Other available operations are described <a class="reference external" href="https://docs.datajoint.org/python/queries/05-Operators.html">here</a>. Also feel free to inspect other tables and learn what kind of data they contain.</p>
@@ -661,8 +666,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># our data is currently in Session table</span>
-<span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -670,8 +675,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type `yes` when prompted to delete</span>
-<span class="p">(</span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">})</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-</pre></div>
+<span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">})</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -679,8 +684,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check that delete worked</span>
-<span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">Session</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">delete</span></code> method is useful when you need to re-do something. We discourage editing an entry because this will affect the associated entries in downstream tables and violate data integrity. Instead it is recommended that you just delete and re-enter it. This is easy to do, as most data entry is automated in our pipeline.</p>
@@ -689,8 +694,8 @@ properly generated, this is straightforward: just run the <code class="docutils 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Entries are also gone from downstream tables, e.g. IntervalList</span>
-<span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">IntervalList</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <p>We’re not quite done yet. Not only should we delete our entry from <code class="docutils literal notranslate"><span class="pre">Session</span></code>, we should also delete the associated entry in <code class="docutils literal notranslate"><span class="pre">Nwbfile</span></code>. Recall from the entity relationship diagram that <code class="docutils literal notranslate"><span class="pre">Nwbfile</span></code> is upstream of <code class="docutils literal notranslate"><span class="pre">Session</span></code>. That means getting rid of our entry from <code class="docutils literal notranslate"><span class="pre">Session</span></code> doesn’t affect the corresponding entry in <code class="docutils literal notranslate"><span class="pre">Nwbfile</span></code> - this has to be manually removed. To do so, we again use the <code class="docutils literal notranslate"><span class="pre">delete</span></code> method, but in the case of <code class="docutils literal notranslate"><span class="pre">Nwbfile</span></code> there is an extra step: we need to remove the NWB
@@ -701,8 +706,8 @@ file itself as well as the entry from <code class="docutils literal notranslate"
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check out the Nwb file</span>
-<span class="n">Nwbfile</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">}</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">Nwbfile</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">}</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -710,8 +715,8 @@ file itself as well as the entry from <code class="docutils literal notranslate"
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s delete the entry</span>
-<span class="p">(</span><span class="n">Nwbfile</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s1">&#39;nwb_file_name&#39;</span><span class="p">:</span><span class="n">nwb_file_name2</span><span class="p">})</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-</pre></div>
+<span class="p">(</span><span class="n">sgc</span><span class="o">.</span><span class="n">Nwbfile</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">})</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -728,8 +733,8 @@ file itself as well as the entry from <code class="docutils literal notranslate"
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We clean it up</span>
-<span class="n">Nwbfile</span><span class="p">()</span><span class="o">.</span><span class="n">cleanup</span><span class="p">(</span><span class="n">delete_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">Nwbfile</span><span class="p">()</span><span class="o">.</span><span class="n">cleanup</span><span class="p">(</span><span class="n">delete_files</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -754,8 +759,8 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take a look at the lab members</span>
-<span class="n">LabMember</span><span class="p">()</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">LabMember</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -763,8 +768,8 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># LabMember also has a Parts table called LabMemberInfo</span>
-<span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="p">()</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -772,8 +777,8 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these are the existing lab teams</span>
-<span class="n">LabTeam</span><span class="p">()</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">LabTeam</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -783,11 +788,11 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new team</span>
 <span class="c1"># change team_name to something unique</span>
 <span class="c1"># change team_members</span>
-<span class="c1"># test_description is optional</span>
-<span class="n">LabTeam</span><span class="p">()</span><span class="o">.</span><span class="n">create_new_team</span><span class="p">(</span><span class="n">team_name</span><span class="o">=</span><span class="s1">&#39;Beans&#39;</span><span class="p">,</span>
-                          <span class="n">team_members</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Alison Comrie&#39;</span><span class="p">,</span> <span class="s1">&#39;Kyu Hyun Lee&#39;</span><span class="p">],</span>
-                          <span class="n">team_description</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
-</pre></div>
+<span class="c1"># team_description is optional</span>
+<span class="n">sgc</span><span class="o">.</span><span class="n">LabTeam</span><span class="p">()</span><span class="o">.</span><span class="n">create_new_team</span><span class="p">(</span>
+    <span class="n">team_name</span><span class="o">=</span><span class="s2">&quot;Beans&quot;</span><span class="p">,</span> <span class="n">team_members</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Alison Comrie&quot;</span><span class="p">],</span> <span class="n">team_description</span><span class="o">=</span><span class="s2">&quot;test&quot;</span>
+<span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -796,17 +801,18 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add info about the team members</span>
 <span class="c1"># add your name and your google account</span>
-<span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="o">.</span><span class="n">insert</span><span class="p">([[</span><span class="s1">&#39;Alison Comrie&#39;</span><span class="p">,</span> <span class="s1">&#39;comrie.alison@gmail.com&#39;</span><span class="p">,</span> <span class="s1">&#39;alison&#39;</span><span class="p">],</span>
-                                <span class="p">[</span><span class="s1">&#39;Kyu Hyun Lee&#39;</span><span class="p">,</span> <span class="s1">&#39;kyuhyun9056@gmail.com&#39;</span><span class="p">,</span> <span class="s1">&#39;kyu&#39;</span><span class="p">]])</span>
-</pre></div>
+<span class="n">sgc</span><span class="o">.</span><span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+    <span class="p">[[</span><span class="s2">&quot;Alison Comrie&quot;</span><span class="p">,</span> <span class="s2">&quot;comrie.alison@gmail.com&quot;</span><span class="p">,</span> <span class="s2">&quot;alison&quot;</span><span class="p">]],</span> <span class="n">skip_duplicates</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="p">()</span>
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgc</span><span class="o">.</span><span class="n">LabMember</span><span class="o">.</span><span class="n">LabMemberInfo</span><span class="p">()</span>
+<br/></pre></div>
 </div>
 </div>
 </section>
@@ -822,7 +828,7 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">NWB-Datajoint Spike Sorting Tutorial</div>
+                <div class="title">Spyglass Spike Sorting Tutorial</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -869,7 +875,7 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">NWB-Datajoint tutorial 0</a><ul>
+<li><a class="reference internal" href="#">Spyglass tutorial 0</a><ul>
 <li><a class="reference internal" href="#Visualizing-the-database">Visualizing the database</a></li>
 <li><a class="reference internal" href="#Example-data">Example data</a></li>
 <li><a class="reference internal" href="#Inserting-data">Inserting data</a></li>
@@ -895,6 +901,7 @@ manual curation of spike sorted data can be set (this will be covered in <a clas
     <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/text-adjustments.js"></script>
