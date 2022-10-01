@@ -13,3 +13,4 @@ matplotlib
 numpy
 myst_parser
 ndx-franklab-novela
+pandoc
