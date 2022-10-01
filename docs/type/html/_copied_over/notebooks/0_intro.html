@@ -16,6 +16,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="Spyglass Spike Sorting Tutorial" href="1_spikesorting.html" /><link rel="prev" title="Jupyter Notebooks Examples" href="../../tutorials.html" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
         <title>NWB-Datajoint tutorial 0 - Spyglass 0.1.1 documentation</title>
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
@@ -23,6 +24,10 @@
     <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
         <title>Spyglass tutorial 0 - Spyglass 0.1.1 documentation</title>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
+        <title>Spyglass tutorial 0 - Spyglass 0.1.1 documentation</title>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -508,6 +513,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="NWB-Datajoint-tutorial-0">
 <<<<<<< HEAD
 <h1>NWB-Datajoint tutorial 0<a class="headerlink" href="#NWB-Datajoint-tutorial-0" title="Permalink to this headline">#</a></h1>
@@ -518,6 +524,10 @@ div.rendered_html tbody tr:hover {
 <section id="Spyglass-tutorial-0">
 <h1>Spyglass tutorial 0<a class="headerlink" href="#Spyglass-tutorial-0" title="Permalink to this heading">#</a></h1>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<section id="Spyglass-tutorial-0">
+<h1>Spyglass tutorial 0<a class="headerlink" href="#Spyglass-tutorial-0" title="Permalink to this heading">#</a></h1>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <p><strong>Note: make a copy of this notebook and run the copy to avoid git conflicts in the future</strong></p>
 <p>This is the zeroth in a multi-part tutorial on the Spyglass pipeline used in Loren Frank’s lab, UCSF. It gives a general introduction to Datajoint and shows how to insert an NWB file into the Datajoint database, inspect and query the data, and delete it.</p>
 <p>Let’s start by importing the <code class="docutils literal notranslate"><span class="pre">spyglass</span></code> package, along with a few others.</p>
@@ -558,12 +568,17 @@ div.rendered_html tbody tr:hover {
 =======
 <h2>Visualizing the database<a class="headerlink" href="#Visualizing-the-database" title="Permalink to this heading">#</a></h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <p>Datajoint enables users to use Python to build and interact with a <em>relational database</em>, which is a fancy way of saying “a set of tables that are related to one another in some way.” The following diagram (called <em>entity relationship diagram</em>) shows all the tables in our database and their relationships.</p>
 =======
 <p>Datajoint enables users to use Python to build and interact with a <em>Relational Database</em>. A <em>Relational Database</em> stores and provides access to data stored in row-features and column-features. Each row provide information about different features of an individivial object while each column provide information about a single feature for a collection of objects. It supports the ability to create a new object, read an existing object, update an existing object and delete an object.</p>
 <p>The following diagram (called <em>entity relationship diagram</em>) shows all the tables in our database and their relationships.</p>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<p>Datajoint enables users to use Python to build and interact with a <em>Relational Database</em>. A <em>Relational Database</em> stores and provides access to data stored in row-features and column-features. Each row provide information about different features of an individivial object while each column provide information about a single feature for a collection of objects. It supports the ability to create a new object, read an existing object, update an existing object and delete an object.</p>
+<p>The following diagram (called <em>entity relationship diagram</em>) shows all the tables in our database and their relationships.</p>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <p>Polygons are tables: * Blue oval: tables whose entries are imported from external files (e.g. NWB file). * Green rectangle: tables whose entries are entered manually. * Red circle: tables whose entries are computed from entries of other tables. * No shape (only text): tables whose entries are part of the table upstream</p>
 <p>Lines are <em>dependencies</em> between tables: * Bold lines: downstream table inherits the <em>primary key</em> ^ of upstream table as its sole primary key * Solid lines: downstream table inherits the primary key of upstream table as part of its primary key * Dashed lines: downstream table inherits the primary key of upstream table as non-primary key</p>
 <p>^ Primary key: a set of attributes (i.e. column names) used to uniquely define an entry (i.e. a row)</p>
@@ -583,6 +598,7 @@ div.rendered_html tbody tr:hover {
 =======
 <h2>Example data<a class="headerlink" href="#Example-data" title="Permalink to this heading">#</a></h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <p>Now that we have a general idea of how our database is organized, we will try inserting new data to it. We assume that the data is a neural recording (along with other auxiliary data) that has already been converted to the NWB format. For the purposes of this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">beans20190718.nwb</span></code>. If you’re accessing the Frank lab database on the UCSF network, this file can be found in <code class="docutils literal notranslate"><span class="pre">/stelmo/nwb/raw</span></code> directory (assuming you have mounted <code class="docutils literal notranslate"><span class="pre">stelmo</span></code> at <code class="docutils literal notranslate"><span class="pre">/</span></code>). If you do not have access
 to Frank lab database, then download <code class="docutils literal notranslate"><span class="pre">beans20190718.nwb</span></code> from <a class="reference external" href="https://www.dropbox.com/s/srra33e0igaj5rm/beans20190718.nwb?dl=0">here</a> - it is rather big (~ 70 GB) so be aware of that.</p>
@@ -592,6 +608,11 @@ to Frank lab database, then download <code class="docutils literal notranslate">
 access to Frank lab database, then download <code class="docutils literal notranslate"><span class="pre">montague20200802.nwb</span></code> from <a class="reference external" href="https://www.dropbox.com/s/srra33e0igaj5rm/montague20200802.nwb?dl=0">here</a> - it is rather big (~ 70 GB) so be aware of that.</p>
 <p>Once you have the NWB file, you should copy it and rename the copy to something unique (e.g. <code class="docutils literal notranslate"><span class="pre">montague20200802_yourname.nwb</span></code>). This is because many people will be using this example file to practice inserting data, and a file can only be inserted once (the file name acts as a <em>primary key</em> in the <code class="docutils literal notranslate"><span class="pre">Session</span></code> table).</p>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<p>Now that we have a general idea of how our database is organized, we will try inserting new data to it. We assume that the data is a neural recording (along with other auxiliary data) that has already been converted to the NWB format. For the purposes of this tutorial, we will use <code class="docutils literal notranslate"><span class="pre">montague20200802.nwb</span></code>. If you’re accessing the Frank lab database on the UCSF network, this file can be found in <code class="docutils literal notranslate"><span class="pre">/stelmo/nwb/raw</span></code> directory (assuming you have mounted <code class="docutils literal notranslate"><span class="pre">stelmo</span></code> at <code class="docutils literal notranslate"><span class="pre">/</span></code>). If you do not have
+access to Frank lab database, then download <code class="docutils literal notranslate"><span class="pre">montague20200802.nwb</span></code> from <a class="reference external" href="https://www.dropbox.com/s/srra33e0igaj5rm/montague20200802.nwb?dl=0">here</a> - it is rather big (~ 70 GB) so be aware of that.</p>
+<p>Once you have the NWB file, you should copy it and rename the copy to something unique (e.g. <code class="docutils literal notranslate"><span class="pre">montague20200802_yourname.nwb</span></code>). This is because many people will be using this example file to practice inserting data, and a file can only be inserted once (the file name acts as a <em>primary key</em> in the <code class="docutils literal notranslate"><span class="pre">Session</span></code> table).</p>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>

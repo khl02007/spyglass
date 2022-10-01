@@ -16,6 +16,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="Clusterless Decoding" href="1D_Clusterless_Decoding.html" /><link rel="prev" title="Spyglass tutorial 0" href="0_intro.html" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
         <title>NWB-Datajoint Spike Sorting Tutorial - Spyglass 0.1.1 documentation</title>
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
@@ -23,6 +24,10 @@
     <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
         <title>Spyglass Spike Sorting Tutorial - Spyglass 0.1.1 documentation</title>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
+        <title>Spyglass Spike Sorting Tutorial - Spyglass 0.1.1 documentation</title>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -508,6 +513,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="NWB-Datajoint-Spike-Sorting-Tutorial">
 <<<<<<< HEAD
 <h1>NWB-Datajoint Spike Sorting Tutorial<a class="headerlink" href="#NWB-Datajoint-Spike-Sorting-Tutorial" title="Permalink to this headline">#</a></h1>
@@ -518,6 +524,10 @@ div.rendered_html tbody tr:hover {
 <section id="Spyglass-Spike-Sorting-Tutorial">
 <h1>Spyglass Spike Sorting Tutorial<a class="headerlink" href="#Spyglass-Spike-Sorting-Tutorial" title="Permalink to this heading">#</a></h1>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<section id="Spyglass-Spike-Sorting-Tutorial">
+<h1>Spyglass Spike Sorting Tutorial<a class="headerlink" href="#Spyglass-Spike-Sorting-Tutorial" title="Permalink to this heading">#</a></h1>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <p><strong>Note: make a copy of this notebook and run the copy to avoid git conflicts in the future</strong></p>
 <p>This is the second in a multi-part tutorial on the Spyglass pipeline used in Loren Frank’s lab, UCSF. It demonstrates how to run spike sorting and curate units within the pipeline.</p>
 <p>If you have not done <a class="reference internal" href="0_intro.html"><span class="doc">tutorial 0</span></a> yet, make sure to do so before proceeding. It is also recommended that you complete the <a class="reference external" href="https://tutorials.datajoint.io/">datajoint tutorials</a> before starting this.</p>
@@ -769,6 +779,7 @@ server, this file will be accessible as <code class="docutils literal notranslat
 </div>
 </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="SpikeSortingFilterParameters">
 <<<<<<< HEAD
 <h3><code class="docutils literal notranslate"><span class="pre">SpikeSortingFilterParameters</span></code><a class="headerlink" href="#SpikeSortingFilterParameters" title="Permalink to this headline">#</a></h3>
@@ -781,6 +792,11 @@ server, this file will be accessible as <code class="docutils literal notranslat
 <h3><code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code><a class="headerlink" href="#SpikeSortingPreprocessingParameters" title="Permalink to this heading">#</a></h3>
 <p>Let’s first take a look at the <code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code> table, which contains the parameters used to filter the recorded data in the spike band prior to spike sorting it.</p>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<section id="SpikeSortingPreprocessingParameters">
+<h3><code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code><a class="headerlink" href="#SpikeSortingPreprocessingParameters" title="Permalink to this heading">#</a></h3>
+<p>Let’s first take a look at the <code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code> table, which contains the parameters used to filter the recorded data in the spike band prior to spike sorting it.</p>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -803,6 +819,7 @@ server, this file will be accessible as <code class="docutils literal notranslat
 </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </section>
 <section id="SpikeSortingArtifactParameters">
 <<<<<<< HEAD
@@ -814,6 +831,9 @@ server, this file will be accessible as <code class="docutils literal notranslat
 =======
 <p>Lets first adjust the <code class="docutils literal notranslate"><span class="pre">frequency_min</span></code> parameter to 600, which is the preference for hippocampal data. Now we can insert that into <code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code> as a new set of filtering parameters for hippocampal data, named <code class="docutils literal notranslate"><span class="pre">'franklab_default_hippocampus'</span></code>.</p>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<p>Lets first adjust the <code class="docutils literal notranslate"><span class="pre">frequency_min</span></code> parameter to 600, which is the preference for hippocampal data. Now we can insert that into <code class="docutils literal notranslate"><span class="pre">SpikeSortingPreprocessingParameters</span></code> as a new set of filtering parameters for hippocampal data, named <code class="docutils literal notranslate"><span class="pre">'franklab_default_hippocampus'</span></code>.</p>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -917,6 +937,7 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="SpikeSortingWorkspace">
 <<<<<<< HEAD
 <h3><code class="docutils literal notranslate"><span class="pre">SpikeSortingWorkspace</span></code><a class="headerlink" href="#SpikeSortingWorkspace" title="Permalink to this headline">#</a></h3>
@@ -926,6 +947,8 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 <p>Now we need to populate the <code class="docutils literal notranslate"><span class="pre">SpikeSortingWorkspace</span></code> table to make this recording available via kachery (our server backend).</p>
 =======
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -981,6 +1004,7 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 <h3>Spike sorting the extracted recording<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 </section>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <section id="SpikeSorter">
 <h3><code class="docutils literal notranslate"><span class="pre">SpikeSorter</span></code><a class="headerlink" href="#SpikeSorter" title="Permalink to this heading">#</a></h3>
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
@@ -988,6 +1012,10 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 <section id="SpikeSorterParameters">
 <h3><code class="docutils literal notranslate"><span class="pre">SpikeSorterParameters</span></code><a class="headerlink" href="#SpikeSorterParameters" title="Permalink to this heading">#</a></h3>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<section id="SpikeSorterParameters">
+<h3><code class="docutils literal notranslate"><span class="pre">SpikeSorterParameters</span></code><a class="headerlink" href="#SpikeSorterParameters" title="Permalink to this heading">#</a></h3>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <p>For our example, we will be using <code class="docutils literal notranslate"><span class="pre">mountainsort4</span></code>. There are already some default parameters in the <code class="docutils literal notranslate"><span class="pre">SpikeSorterParameters</span></code> table we’ll <code class="docutils literal notranslate"><span class="pre">fetch</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1039,6 +1067,7 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 </div>
 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 </section>
 <section id="SpikeSorterParameters">
 <<<<<<< HEAD
@@ -1050,6 +1079,9 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 =======
 <p>Let’s go ahead and insert a new <code class="docutils literal notranslate"><span class="pre">sorter_params_name</span></code> and <code class="docutils literal notranslate"><span class="pre">sorter_params</span></code> dict into the <code class="docutils literal notranslate"><span class="pre">SpikeSorterParameters</span></code> table named <code class="docutils literal notranslate"><span class="pre">franklab_hippocampus_tutorial</span></code>.</p>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<p>Let’s go ahead and insert a new <code class="docutils literal notranslate"><span class="pre">sorter_params_name</span></code> and <code class="docutils literal notranslate"><span class="pre">sorter_params</span></code> dict into the <code class="docutils literal notranslate"><span class="pre">SpikeSorterParameters</span></code> table named <code class="docutils literal notranslate"><span class="pre">franklab_hippocampus_tutorial</span></code>.</p>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1133,6 +1165,7 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <div class="nbinput nblast docutils container">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
@@ -1161,12 +1194,16 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 =======
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sgss</span><span class="o">.</span><span class="n">SpikeSorting</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">ss_key</span>
 <br/></pre></div>
 </div>
 </div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 </section>
 <section id="See-2_curation-for-the-next-tutorial">
@@ -1179,6 +1216,10 @@ here. Our <code class="docutils literal notranslate"><span class="pre">sort_inte
 <section id="Congratulations,-you’ve-spike-sorted!-See-2_curation-for-the-next-tutorial">
 <h3>Congratulations, you’ve spike sorted! See 2_curation for the next tutorial<a class="headerlink" href="#Congratulations,-you’ve-spike-sorted!-See-2_curation-for-the-next-tutorial" title="Permalink to this heading">#</a></h3>
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<section id="Congratulations,-you’ve-spike-sorted!-See-2_curation-for-the-next-tutorial">
+<h3>Congratulations, you’ve spike sorted! See 2_curation for the next tutorial<a class="headerlink" href="#Congratulations,-you’ve-spike-sorted!-See-2_curation-for-the-next-tutorial" title="Permalink to this heading">#</a></h3>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 </section>
 </section>
 </section>

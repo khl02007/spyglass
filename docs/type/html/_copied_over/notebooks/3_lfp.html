@@ -512,6 +512,7 @@ div.rendered_html tbody tr:hover {
 <section id="This-notebook-shows-an-example-where-a-set-of-electrodes-are-selected-from-a-dataset-and-then-LFP-is-extracted-from-those-electrodes-and-then-written-to-a-new-NWB-file">
 <h2>This notebook shows an example where a set of electrodes are selected from a dataset and then LFP is extracted from those electrodes and then written to a new NWB file<a class="headerlink" href="#This-notebook-shows-an-example-where-a-set-of-electrodes-are-selected-from-a-dataset-and-then-LFP-is-extracted-from-those-electrodes-and-then-written-to-a-new-NWB-file" title="Permalink to this heading">#</a></h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -519,6 +520,10 @@ div.rendered_html tbody tr:hover {
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pynwb</span>
@@ -2536,6 +2541,7 @@ if (window.Jupyter !== undefined) {
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
+<<<<<<< HEAD
 </div>
 <div class="output_area rendered_html docutils container">
 <style>.bk-root, .bk-root .bk:before, .bk-root .bk:after {
@@ -2548,6 +2554,20 @@ if (window.Jupyter !== undefined) {
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
+=======
+</div>
+<div class="output_area rendered_html docutils container">
+<style>.bk-root, .bk-root .bk:before, .bk-root .bk:after {
+  font-family: var(--jp-ui-font-size1);
+  font-size: var(--jp-ui-font-size1);
+  color: var(--jp-ui-font-color1);
+}
+</style></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /home/zoldello/anaconda3/envs/spyglass/lib/python3.9/site-packages/position_tools/core.py:3: DeprecationWarning: Please use `gaussian_filter1d` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
@@ -2560,6 +2580,7 @@ if (window.Jupyter !== undefined) {
 =======
 <h3>Next we select the NWB file, which corresponds to the dataset we want to extract LFP from<a class="headerlink" href="#Next-we-select-the-NWB-file,-which-corresponds-to-the-dataset-we-want-to-extract-LFP-from" title="Permalink to this heading">#</a></h3>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2567,6 +2588,10 @@ if (window.Jupyter !== undefined) {
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nwb_file_names</span> <span class="o">=</span> <span class="n">Nwbfile</span><span class="p">()</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">)</span>
@@ -2726,6 +2751,7 @@ Deletes cancelled
 =======
 <h2>Or select one electrode for LFP<a class="headerlink" href="#Or-select-one-electrode-for-LFP" title="Permalink to this heading">#</a></h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -2733,6 +2759,10 @@ Deletes cancelled
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LFPSelection</span><span class="p">()</span><span class="o">.</span><span class="n">set_lfp_electrodes</span><span class="p">(</span><span class="n">nwb_file_name</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -2847,21 +2877,32 @@ Deletes cancelled
 =======
 <h2>Populate the LFP table. Note that this takes 2 hours or so on a laptop if you use all electrodes<a class="headerlink" href="#Populate-the-LFP-table.-Note-that-this-takes-2-hours-or-so-on-a-laptop-if-you-use-all-electrodes" title="Permalink to this heading">#</a></h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 <div class="nbinput nblast docutils container">
 =======
 <div class="nbinput docutils container">
 >>>>>>> e947b8c31faccd4dddf306f0842d510469b7ae95
+=======
+<div class="nbinput docutils container">
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LFP</span><span class="p">()</span><span class="o">.</span><span class="n">populate</span><span class="p">([</span><span class="n">LFPSelection</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_file_name</span><span class="p">}])</span>
 <br/></pre></div>
 </div>
+<<<<<<< HEAD
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
+=======
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+>>>>>>> c0f0a1e29268148105708b30c6c04efbbd109b56
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 /stelmo/nwb/raw/CH6520211210_.nwb
