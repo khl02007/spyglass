@@ -15,11 +15,11 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" /><link rel="next" title="spyglass" href="../../_autosummary/spyglass.html" /><link rel="prev" title="Pipeline" href="5_linearization.html" />
 
-    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.2, furo 2022.09.15"/>
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
         <title>MySQL Docker tutorial - Spyglass 0.1.1 documentation</title>
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=9ec31e2665bf879c1d47d93a8ec4893870ee1e45" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/datajoint_header.css" />
     
@@ -231,7 +231,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -534,59 +535,55 @@ docker run --name &lt;name&gt; -v dj-vol:/var/lib/mysql -p <span class="m">3306<
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># set dirs</span>
-<span class="n">base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/home/kyu/dj&#39;</span><span class="p">)</span> <span class="c1"># change this to your desired directory</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/home/kyu/dj&quot;</span><span class="p">)</span>  <span class="c1"># change this to your desired directory</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">base_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
-<span class="n">raw_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;raw&#39;</span>
+<span class="n">raw_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;raw&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">raw_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">raw_dir</span><span class="p">)</span>
-<span class="n">analysis_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;analysis&#39;</span>
+<span class="n">analysis_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;analysis&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">analysis_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">analysis_dir</span><span class="p">)</span>
-<span class="n">kachery_storage_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;kachery-storage&#39;</span>
+<span class="n">kachery_storage_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;kachery-storage&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">kachery_storage_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">kachery_storage_dir</span><span class="p">)</span>
-<span class="n">recording_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;recording&#39;</span>
+<span class="n">recording_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;recording&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">recording_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">recording_dir</span><span class="p">)</span>
-<span class="n">sorting_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;sorting&#39;</span>
+<span class="n">sorting_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;sorting&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">sorting_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">sorting_dir</span><span class="p">)</span>
-<span class="n">waveforms_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;waveforms&#39;</span>
+<span class="n">waveforms_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;waveforms&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">waveforms_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">waveforms_dir</span><span class="p">)</span>
-<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s1">&#39;tmp&#39;</span>
+<span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">base_dir</span> <span class="o">/</span> <span class="s2">&quot;tmp&quot;</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
 
 <span class="c1"># set dj config</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.host&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.user&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;root&#39;</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.password&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;tutorial&#39;</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;database.port&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3306</span>
-<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;stores&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">&#39;raw&#39;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">&#39;protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw_dir</span><span class="p">),</span>
-    <span class="s1">&#39;stage&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw_dir</span><span class="p">)</span>
-  <span class="p">},</span>
-  <span class="s1">&#39;analysis&#39;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s1">&#39;protocol&#39;</span><span class="p">:</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">analysis_dir</span><span class="p">),</span>
-    <span class="s1">&#39;stage&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">analysis_dir</span><span class="p">)</span>
-  <span class="p">}</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.host&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;root&quot;</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.password&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;tutorial&quot;</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;database.port&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3306</span>
+<span class="n">dj</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;stores&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;raw&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw_dir</span><span class="p">),</span> <span class="s2">&quot;stage&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">raw_dir</span><span class="p">)},</span>
+    <span class="s2">&quot;analysis&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;protocol&quot;</span><span class="p">:</span> <span class="s2">&quot;file&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">analysis_dir</span><span class="p">),</span>
+        <span class="s2">&quot;stage&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">analysis_dir</span><span class="p">),</span>
+    <span class="p">},</span>
 <span class="p">}</span>
 
 <span class="c1"># set env vars</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPYGLASS_BASE_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPYGLASS_RECORDING_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">recording_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPYGLASS_SORTING_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sorting_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;SPYGLASS_WAVEFORMS_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">waveforms_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KACHERY_STORAGE_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">kachery_storage_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KACHERY_TEMP_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FIGURL_CHANNEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;franklab2&quot;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DJ_SUPPORT_FILEPATH_MANAGEMENT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;TRUE&#39;</span>
-</pre></div>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPYGLASS_BASE_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">base_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPYGLASS_RECORDING_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">recording_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPYGLASS_SORTING_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sorting_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;SPYGLASS_WAVEFORMS_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">waveforms_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KACHERY_STORAGE_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">kachery_storage_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KACHERY_TEMP_DIR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;FIGURL_CHANNEL&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;franklab2&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;DJ_SUPPORT_FILEPATH_MANAGEMENT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TRUE&quot;</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -604,7 +601,7 @@ docker run --name &lt;name&gt; -v dj-vol:/var/lib/mysql -p <span class="m">3306<
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spyglass</span> <span class="k">as</span> <span class="nn">nd</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -2103,7 +2100,7 @@ if (window.Jupyter !== undefined) {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nd</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">SpikeSorting</span><span class="p">()</span>
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -2285,6 +2282,7 @@ if (window.Jupyter !== undefined) {
 >>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
     <script src="../../_static/scripts/furo.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/text-adjustments.js"></script>

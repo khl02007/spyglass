@@ -1,0 +1,1195 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" />
+
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
+        <title>How do I access the GPU clusters? - Spyglass 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/datajoint_header.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Spyglass 0.1.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/spyglass.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Spyglass 0.1.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0_intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_spikesorting.html">Spike Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1D_Clusterless_Decoding.html">Clusterless Decoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_curation.html">Curation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_curation_lftest.html">Curation LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2D_Clusterless_Decoding.html">Another Clusterless Decoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_lfp.html">LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_position_info.html">Position Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_linearization.html">Linearization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_mysql_tutorial.html">MySQL Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../_autosummary/spyglass.html">API reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../_autosummary/spyglass.cli.html">spyglass.cli</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/spyglass.cli.cli.html">spyglass.cli.cli</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_contribute.html">How to Contribute</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../figurl_views.html">Figurl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../session_groups.html">Session Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyright.html">Copyright</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="How-do-I-access-the-GPU-clusters?">
+<h1>How do I access the GPU clusters?<a class="headerlink" href="#How-do-I-access-the-GPU-clusters?" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>We have two GPU clusters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">breeze</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zephyr</span></code></p></li>
+</ul>
+</li>
+<li><p>You can ssh to them using the following commands: <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;breeze.cin.ucsf.edu</span></code> or <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">username&#64;zephyr.cin.ucsf.edu</span></code></p>
+<ul>
+<li><p>NOTE: You don’t need to specify the port like on the virgas (it is the default port 22)</p></li>
+</ul>
+</li>
+<li><p>There are currently 10 available GPUs and each GPU can be referred to by their IDs which starts at 0 and end at 9</p></li>
+<li><p>Each GPU has 80 GB of RAM</p></li>
+</ul>
+</section>
+<section id="How-do-I-select-a-GPU-to-use?">
+<h1>How do I select a GPU to use?<a class="headerlink" href="#How-do-I-select-a-GPU-to-use?" title="Permalink to this heading">#</a></h1>
+<p>To use GPU decoding, you first must install <code class="docutils literal notranslate"><span class="pre">cupy</span></code>. The best way to do this is via conda because it takes care of the installing the correct cuda-toolkit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install cupy
+</pre></div>
+</div>
+<p>Next you will want to select a single GPU for decoding. You can accomplish this using <code class="docutils literal notranslate"><span class="pre">cp.cuda.Device(GPU_ID)</span></code> with a context manager (the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement). Warning: if you don’t use the context manager, cupy will default to using GPU 0.</p>
+<p>For example, This runs the indented code on GPU #6.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">replay_trajectory_classification</span> <span class="kn">import</span> <span class="n">SortedSpikesClassifier</span>
+<span class="kn">from</span> <span class="nn">replay_trajectory_classification.sorted_spikes_simulation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">make_simulated_run_data</span><span class="p">,</span>
+    <span class="n">make_continuous_replay</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">replay_trajectory_classification.environments</span> <span class="kn">import</span> <span class="n">Environment</span>
+<span class="kn">from</span> <span class="nn">replay_trajectory_classification.continuous_state_transitions</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RandomWalk</span><span class="p">,</span>
+    <span class="n">Uniform</span><span class="p">,</span>
+    <span class="n">Identity</span><span class="p">,</span>
+    <span class="n">estimate_movement_var</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Set up logging message formatting</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Create simulated data</span>
+<span class="n">time</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">,</span> <span class="n">spikes</span><span class="p">,</span> <span class="n">place_fields</span> <span class="o">=</span> <span class="n">make_simulated_run_data</span><span class="p">()</span>
+
+<span class="n">replay_time</span><span class="p">,</span> <span class="n">test_spikes</span> <span class="o">=</span> <span class="n">make_continuous_replay</span><span class="p">()</span>
+
+<span class="c1"># Set up classifier</span>
+<span class="n">movement_var</span> <span class="o">=</span> <span class="n">estimate_movement_var</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">sampling_frequency</span><span class="p">)</span>
+
+<span class="n">environment</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">place_bin_size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">movement_var</span><span class="p">))</span>
+<span class="n">continuous_transition_types</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">RandomWalk</span><span class="p">(</span><span class="n">movement_var</span><span class="o">=</span><span class="n">movement_var</span> <span class="o">*</span> <span class="mi">120</span><span class="p">),</span> <span class="n">Uniform</span><span class="p">(),</span> <span class="n">Identity</span><span class="p">()],</span>
+    <span class="p">[</span><span class="n">Uniform</span><span class="p">(),</span> <span class="n">Uniform</span><span class="p">(),</span> <span class="n">Uniform</span><span class="p">()],</span>
+    <span class="p">[</span><span class="n">RandomWalk</span><span class="p">(</span><span class="n">movement_var</span><span class="o">=</span><span class="n">movement_var</span> <span class="o">*</span> <span class="mi">120</span><span class="p">),</span> <span class="n">Uniform</span><span class="p">(),</span> <span class="n">Identity</span><span class="p">()],</span>
+<span class="p">]</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">SortedSpikesClassifier</span><span class="p">(</span>
+    <span class="n">environments</span><span class="o">=</span><span class="n">environment</span><span class="p">,</span>
+    <span class="n">continuous_transition_types</span><span class="o">=</span><span class="n">continuous_transition_types</span><span class="p">,</span>
+    <span class="n">sorted_spikes_algorithm</span><span class="o">=</span><span class="s2">&quot;spiking_likelihood_kde_gpu&quot;</span><span class="p">,</span>  <span class="c1"># specify GPU enabled algorithm for the likelihood</span>
+    <span class="n">sorted_spikes_algorithm_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;position_std&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">state_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;continuous&quot;</span><span class="p">,</span> <span class="s2">&quot;fragmented&quot;</span><span class="p">,</span> <span class="s2">&quot;stationary&quot;</span><span class="p">]</span>
+
+<span class="c1"># Use GPU #6</span>
+<span class="n">GPU_ID</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># use context manager to specify which GPU (device)</span>
+<span class="k">with</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">GPU_ID</span><span class="p">):</span>
+    <span class="c1"># Fit the model place fields</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">spikes</span><span class="p">)</span>
+
+    <span class="c1"># Run the model on the simulated replay</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+        <span class="n">test_spikes</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">replay_time</span><span class="p">,</span>
+        <span class="n">state_names</span><span class="o">=</span><span class="n">state_names</span><span class="p">,</span>
+        <span class="n">use_gpu</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Also need to specify use of GPU for the computation of the causal and acausal posterior</span>
+    <span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+04-Jun-22 09:36:07 Fitting initial conditions...
+04-Jun-22 09:36:07 Fitting continuous state transition...
+04-Jun-22 09:36:07 Fitting discrete state transition
+04-Jun-22 09:36:07 Fitting place fields...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "cb9def49ec5c40e0b974cd5768839057", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+04-Jun-22 09:36:08 Estimating likelihood...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "eb83255d0b4d4fdb918991571f8e64fb", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+04-Jun-22 09:36:08 Estimating causal posterior...
+04-Jun-22 09:36:10 Estimating acausal posterior...
+</pre></div></div>
+</div>
+</section>
+<section id="Which-GPU-should-I-use?">
+<h1>Which GPU should I use?<a class="headerlink" href="#Which-GPU-should-I-use?" title="Permalink to this heading">#</a></h1>
+<p>You can see which GPUs are occupied by running <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> in the command line or alternatively <code class="docutils literal notranslate"><span class="pre">!nvidia-smi</span></code> in a jupyter notebook. Pick a GPU with low memory usage. For example, in the below output, GPUs 1, 4, 6, and 7 are probably not in use because they have low memory utilization. In addition, the power should be around 42W if not in use:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>nvidia-smi
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Sat Jun  4 09:37:07 2022
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 510.47.03    Driver Version: 510.47.03    CUDA Version: 11.6     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA A100 80G...  On   | 00000000:4F:00.0 Off |                    0 |
+| N/A   30C    P0    42W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100 80G...  On   | 00000000:52:00.0 Off |                    0 |
+| N/A   32C    P0    43W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100 80G...  On   | 00000000:53:00.0 Off |                    0 |
+| N/A   32C    P0    62W / 300W |  32271MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100 80G...  On   | 00000000:56:00.0 Off |                    0 |
+| N/A   29C    P0    41W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   4  NVIDIA A100 80G...  On   | 00000000:57:00.0 Off |                    0 |
+| N/A   30C    P0    44W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   5  NVIDIA A100 80G...  On   | 00000000:CE:00.0 Off |                    0 |
+| N/A   32C    P0    64W / 300W |    855MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   6  NVIDIA A100 80G...  On   | 00000000:D1:00.0 Off |                    0 |
+| N/A   31C    P0    42W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   7  NVIDIA A100 80G...  On   | 00000000:D2:00.0 Off |                    0 |
+| N/A   29C    P0    43W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   8  NVIDIA A100 80G...  On   | 00000000:D5:00.0 Off |                    0 |
+| N/A   31C    P0    42W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   9  NVIDIA A100 80G...  On   | 00000000:D6:00.0 Off |                    0 |
+| N/A   32C    P0    44W / 300W |     38MiB / 81920MiB |      0%      Default |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    1   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    2   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    2   N/A  N/A   3646915      C   .../envs/spyglass/bin/python    32199MiB |
+|    3   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    4   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    5   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    5   N/A  N/A   3645824      C   .../envs/spyglass/bin/python      817MiB |
+|    6   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    7   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    8   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
+|    9   N/A  N/A      4198      G   /usr/lib/xorg/Xorg                 35MiB |
++-----------------------------------------------------------------------------+
+</pre></div></div>
+</div>
+<p>You can also monitor their usage by using <code class="docutils literal notranslate"><span class="pre">watch</span> <span class="pre">-n</span> <span class="pre">0.1</span> <span class="pre">nvidia-smi</span></code> which will update <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> every 100 ms. This is best to monitor in the terminal because jupyter notebook won’t display the updates.</p>
+<p>Other ways to monitor GPU usage are: + <a class="reference external" href="https://github.com/rapidsai/jupyterlab-nvdashboard">https://github.com/rapidsai/jupyterlab-nvdashboard</a>: a jupyter widget by nvidia to monitor GPU usage in the notebook + <a class="reference external" href="https://github.com/peci1/nvidia-htop">https://github.com/peci1/nvidia-htop</a>: a terminal program like nvidia-smi with more information about which users are utilizing the GPUs and which GPUs are being utilized.</p>
+</section>
+<section id="How-do-I-use-multiple-GPUs-at-once?">
+<h1>How do I use multiple GPUs at once?<a class="headerlink" href="#How-do-I-use-multiple-GPUs-at-once?" title="Permalink to this heading">#</a></h1>
+<p>To use multiple GPUs, you need to install the <code class="docutils literal notranslate"><span class="pre">dask_cuda</span></code> package with conda:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c rapidsai -c nvidia -c conda-forge dask-cuda
+</pre></div>
+</div>
+<p>Next you will set up a client, which controls which GPUs will be used. By default, this will use all the GPUs you have, but if you want to use specific GPUs, you accomplish this using the <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code> argument like so:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dask_cuda</span> <span class="kn">import</span> <span class="n">LocalCUDACluster</span>
+<span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span>
+
+<span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCUDACluster</span><span class="p">(</span><span class="n">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+
+<span class="n">client</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2022-05-18 13:50:10,288 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-ly7bpyy1&#39;, purging
+2022-05-18 13:50:10,296 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-n6nteep3&#39;, purging
+2022-05-18 13:50:10,302 - distributed.diskutils - INFO - Found stale lock file and directory &#39;/stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-okcse855&#39;, purging
+2022-05-18 13:50:10,305 - distributed.preloading - INFO - Import preload module: dask_cuda.initialize
+2022-05-18 13:50:10,313 - distributed.preloading - INFO - Import preload module: dask_cuda.initialize
+2022-05-18 13:50:10,319 - distributed.preloading - INFO - Import preload module: dask_cuda.initialize
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;"> </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px;">Client</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">Client-1c4b4a29-d6ec-11ec-9abe-3cecef615bf0</p>
+        <table style="width: 100%; text-align: left;">
+
+        <tr>
+
+            <td style="text-align: left;"><strong>Connection method:</strong> Cluster object</td>
+            <td style="text-align: left;"><strong>Cluster type:</strong> dask_cuda.LocalCUDACluster</td>
+
+        </tr>
+
+
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard: </strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;"></td>
+            </tr>
+
+
+        </table>
+
+
+            <details>
+            <summary style="margin-bottom: 20px;"><h3 style="display: inline;">Cluster Info</h3></summary>
+            <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-mod-trusted jp-OutputArea-output">
+    <div style="width: 24px; height: 24px; background-color: #e1e1e1; border: 3px solid #9D9D9D; border-radius: 5px; position: absolute;">
+    </div>
+    <div style="margin-left: 48px;">
+        <h3 style="margin-bottom: 0px; margin-top: 0px;">LocalCUDACluster</h3>
+        <p style="color: #9D9D9D; margin-bottom: 0px;">096db37c</p>
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                </td>
+                <td style="text-align: left;">
+                    <strong>Workers:</strong> 3
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">
+                    <strong>Total threads:</strong> 3
+                </td>
+                <td style="text-align: left;">
+                    <strong>Total memory:</strong> 3.94 TiB
+                </td>
+            </tr>
+
+            <tr>
+    <td style="text-align: left;"><strong>Status:</strong> running</td>
+    <td style="text-align: left;"><strong>Using processes:</strong> True</td>
+</tr>
+
+
+        </table>
+
+        <details>
+            <summary style="margin-bottom: 20px;">
+                <h3 style="display: inline;">Scheduler Info</h3>
+            </summary>
+
+            <div style="">
+    <div>
+        <div style="width: 24px; height: 24px; background-color: #FFF7E5; border: 3px solid #FF6132; border-radius: 5px; position: absolute;"> </div>
+        <div style="margin-left: 48px;">
+            <h3 style="margin-bottom: 0px;">Scheduler</h3>
+            <p style="color: #9D9D9D; margin-bottom: 0px;">Scheduler-9287d258-c1ff-4d5a-8e3c-2a66ca163173</p>
+            <table style="width: 100%; text-align: left;">
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Comm:</strong> tcp://127.0.0.1:37725
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Workers:</strong> 3
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Dashboard:</strong> <a href="http://127.0.0.1:8787/status" target="_blank">http://127.0.0.1:8787/status</a>
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total threads:</strong> 3
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <strong>Started:</strong> Just now
+                    </td>
+                    <td style="text-align: left;">
+                        <strong>Total memory:</strong> 3.94 TiB
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <details style="margin-left: 48px;">
+        <summary style="margin-bottom: 20px;">
+            <h3 style="display: inline;">Workers</h3>
+        </summary>
+
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 4</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:35731
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:46067/status" target="_blank">http://127.0.0.1:46067/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 1.31 TiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:34151
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-n17o941r
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>GPU: </strong>NVIDIA A100 80GB PCIe
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>GPU memory: </strong> 80.00 GiB
+                        </td>
+                    </tr>
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 5</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:39549
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:42725/status" target="_blank">http://127.0.0.1:42725/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 1.31 TiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:41769
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-ppy7ls9e
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>GPU: </strong>NVIDIA A100 80GB PCIe
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>GPU memory: </strong> 80.00 GiB
+                        </td>
+                    </tr>
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="width: 24px; height: 24px; background-color: #DBF5FF; border: 3px solid #4CC9FF; border-radius: 5px; position: absolute;"> </div>
+            <div style="margin-left: 48px;">
+            <details>
+                <summary>
+                    <h4 style="margin-bottom: 0px; display: inline;">Worker: 6</h4>
+                </summary>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Comm: </strong> tcp://127.0.0.1:39335
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Total threads: </strong> 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Dashboard: </strong> <a href="http://127.0.0.1:34189/status" target="_blank">http://127.0.0.1:34189/status</a>
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>Memory: </strong> 1.31 TiB
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>Nanny: </strong> tcp://127.0.0.1:46373
+                        </td>
+                        <td style="text-align: left;"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: left;">
+                            <strong>Local directory: </strong> /stelmo/edeno/nwb_datajoint/notebooks/dask-worker-space/worker-m7thw3ne
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="text-align: left;">
+                            <strong>GPU: </strong>NVIDIA A100 80GB PCIe
+                        </td>
+                        <td style="text-align: left;">
+                            <strong>GPU memory: </strong> 80.00 GiB
+                        </td>
+                    </tr>
+
+
+
+
+                </table>
+            </details>
+            </div>
+        </div>
+
+
+    </details>
+</div>
+
+        </details>
+    </div>
+</div>
+            </details>
+
+
+    </div>
+</div></div>
+</div>
+<p>This uses three GPUs with IDS 4, 5, and 6.</p>
+<p>Finally, to run the code, you need to wrap the function that you want to run on each GPU with the <code class="docutils literal notranslate"><span class="pre">dask.delayed</span></code> decorator.</p>
+<p>For example, say we want to run the function <code class="docutils literal notranslate"><span class="pre">test_gpu</span></code> on each item of <code class="docutils literal notranslate"><span class="pre">data</span></code> where each item is processed on a different GPU.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+<span class="kn">import</span> <span class="nn">dask</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<span class="k">def</span> <span class="nf">setup_logger</span><span class="p">(</span><span class="n">name_logfile</span><span class="p">,</span> <span class="n">path_logfile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sets up a logger for each function that outputs</span>
+<span class="sd">    to the console and to a file&quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name_logfile</span><span class="p">)</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+        <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fileHandler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">path_logfile</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">fileHandler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+    <span class="n">streamHandler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">streamHandler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fileHandler</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">streamHandler</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">logger</span>
+
+
+<span class="c1"># This uses the dask.delayed decorator on the test_gpu function</span>
+<span class="nd">@dask</span><span class="o">.</span><span class="n">delayed</span>
+<span class="k">def</span> <span class="nf">test_gpu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ind</span><span class="p">):</span>
+    <span class="c1"># Create a log file for this run of the function</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">(</span><span class="n">name_logfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;test_</span><span class="si">{</span><span class="n">ind</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">path_logfile</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;test_</span><span class="si">{</span><span class="n">ind</span><span class="si">}</span><span class="s2">.log&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test to see if these go into different log files</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;This is a test of </span><span class="si">{</span><span class="n">ind</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;This should be in a unique file&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Run a GPU computation</span>
+    <span class="k">return</span> <span class="n">cp</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">(</span><span class="n">cp</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+
+<span class="c1"># Make up 10 fake datasets</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">cp</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+<span class="c1"># Append the result of the computation into a results list</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_gpu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ind</span><span class="p">)</span> <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+
+<span class="c1"># Run `dask.compute` on the results list for the code to run</span>
+<span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+18-May-22 13:50:12 This is a test of 4
+18-May-22 13:50:12 This should be in a unique file
+18-May-22 13:50:12 This is a test of 3
+18-May-22 13:50:12 This should be in a unique file
+18-May-22 13:50:12 This is a test of 1
+18-May-22 13:50:12 This should be in a unique file
+18-May-22 13:50:13 This is a test of 9
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 6
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 5
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 0
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 2
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 7
+18-May-22 13:50:13 This should be in a unique file
+18-May-22 13:50:13 This is a test of 8
+18-May-22 13:50:13 This should be in a unique file
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(array([ 0.00106875, -0.0032616 , -0.00759213, ..., -0.00612375,
+         0.0059738 , -0.01329288], dtype=float32),
+ array([ 1.1191896 ,  0.6762629 ,  0.23331782, ...,  0.38350907,
+         1.6208985 , -0.34978032], dtype=float32),
+ array([4.23731  , 3.3557875, 2.4742277, ..., 2.7731416, 5.235823 ,
+        1.3137323], dtype=float32),
+ array([ 9.3554325,  8.035313 ,  6.7151375, ...,  7.1627736, 10.850748 ,
+         4.9772453], dtype=float32),
+ array([16.47355 , 14.714837, 12.956048, ..., 13.552408, 18.465672,
+        10.640757], dtype=float32),
+ array([25.591675, 23.39436 , 21.196953, ..., 21.942041, 28.0806  ,
+        18.304268], dtype=float32),
+ array([36.7098  , 34.073883, 31.437868, ..., 32.331676, 39.695522,
+        27.967781], dtype=float32),
+ array([49.827915, 46.753407, 43.67878 , ..., 44.721313, 53.31045 ,
+        39.631294], dtype=float32),
+ array([64.946045, 61.432938, 57.9197  , ..., 59.11094 , 68.92538 ,
+        53.2948  ], dtype=float32),
+ array([82.064156, 78.11245 , 74.16061 , ..., 75.50058 , 86.5403  ,
+        68.95831 ], dtype=float32))
+</pre></div></div>
+</div>
+<p>This example also shows how to create a log file for each item in data with the <code class="docutils literal notranslate"><span class="pre">setup_logger</span></code> function.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"12b5d64ee6524b1eaf1ee6fd6b525c80": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8bb56d17b82b4a5bb0f0c83fbadedb17", "max": 19, "style": "IPY_MODEL_454afb67ce13492883fd0d8e4d661bc3", "value": 19}}, "1360f588bad24fc396747e5c50f1403d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8fe479db9bd043b88be6195f8a640168", "max": 19, "style": "IPY_MODEL_503501b2bf5f4e16a23bd6a664d44b4c", "value": 19}}, "3ce2a6b24866418283821b3f5524406b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_885a8a2f29f044f7a8152d2c5e3708ef", "style": "IPY_MODEL_85281b1088aa468ea3a049fc6c94f9fa", "value": "100%"}}, "42b142ef041d4de997fbf1342aeaa164": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "454afb67ce13492883fd0d8e4d661bc3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "46411bbd882d4eb0a09816b030c2d09c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "503501b2bf5f4e16a23bd6a664d44b4c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "5284c4b79264450597b2f001829ef7ab": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "64eeede3ae25465781681635ff5b6074": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_5284c4b79264450597b2f001829ef7ab", "style": "IPY_MODEL_d0ec6046ce394b16b7a8627ad2d3408c", "value": "100%"}}, "71854e6272d542b1ae73f223633ec884": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "85281b1088aa468ea3a049fc6c94f9fa": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "885a8a2f29f044f7a8152d2c5e3708ef": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "8bb56d17b82b4a5bb0f0c83fbadedb17": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "8e6df65ab23b4c738faf6aab3df69169": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "8fe479db9bd043b88be6195f8a640168": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "a1c2e41bd9164051ae0147c77e82ac32": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "ad7c4c7af4ff4895af77fc272d3e1971": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "c76a78d08c064bdf82373331d40610df": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_a1c2e41bd9164051ae0147c77e82ac32", "style": "IPY_MODEL_ad7c4c7af4ff4895af77fc272d3e1971", "value": " 19/19 [00:00&lt;00:00, 297.26it/s]"}}, "cb9def49ec5c40e0b974cd5768839057": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_64eeede3ae25465781681635ff5b6074", "IPY_MODEL_1360f588bad24fc396747e5c50f1403d", "IPY_MODEL_c76a78d08c064bdf82373331d40610df"], "layout": "IPY_MODEL_71854e6272d542b1ae73f223633ec884"}}, "d0ec6046ce394b16b7a8627ad2d3408c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "eb83255d0b4d4fdb918991571f8e64fb": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_3ce2a6b24866418283821b3f5524406b", "IPY_MODEL_12b5d64ee6524b1eaf1ee6fd6b525c80", "IPY_MODEL_fc77fac0ad3940f5a61af6f12c304f23"], "layout": "IPY_MODEL_8e6df65ab23b4c738faf6aab3df69169"}}, "fc77fac0ad3940f5a61af6f12c304f23": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_46411bbd882d4eb0a09816b030c2d09c", "style": "IPY_MODEL_42b142ef041d4de997fbf1342aeaa164", "value": " 19/19 [00:00&lt;00:00,  3.51it/s]"}}}, "version_major": 2, "version_minor": 0}
+</script></section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                <a href="../../copyright.html">Copyright</a> &#169; 2020 - Present, Loren Frank
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/text-adjustments.js"></script>
+    </body>
+</html>
