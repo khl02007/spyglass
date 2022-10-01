@@ -1,0 +1,1946 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="copyright" title="Copyright" href="../../copyright.html" />
+
+    <link rel="shortcut icon" href="../../_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
+        <title>UnitMarksIndicator - Spyglass 0.1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/datajoint_header.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Spyglass 0.1.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../_static/spyglass.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Spyglass 0.1.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="0_intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_spikesorting.html">Spike Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1D_Clusterless_Decoding.html">Clusterless Decoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_curation.html">Curation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_curation_lftest.html">Curation LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2D_Clusterless_Decoding.html">Another Clusterless Decoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_lfp.html">LFP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_position_info.html">Position Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_linearization.html">Linearization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_mysql_tutorial.html">MySQL Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../_autosummary/spyglass.html">API reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../_autosummary/spyglass.cli.html">spyglass.cli</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/spyglass.cli.cli.html">spyglass.cli.cli</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how_to_contribute.html">How to Contribute</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../misc.html">Miscellaneous</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../figurl_views.html">Figurl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../session_groups.html">Session Groups</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../copyright.html">Copyright</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spyglass</span> <span class="k">as</span> <span class="nn">nd</span>
+
+<span class="c1"># ignore datajoint+jupyter async warnings</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">ResourceWarning</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">FORMAT</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">FORMAT</span><span class="p">,</span> <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%b-%y %H:%M:%S&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nwb_copy_file_name</span> <span class="o">=</span> <span class="s2">&quot;chimi20200216_new_.nwb&quot;</span>
+<br/></pre></div>
+</div>
+</div>
+<section id="UnitMarksIndicator">
+<h1>UnitMarksIndicator<a class="headerlink" href="#UnitMarksIndicator" title="Permalink to this heading">#</a></h1>
+<p>The first thing we need are the marks indicators for the clusterless decoding. See the <code class="docutils literal notranslate"><span class="pre">Extract_Mark_indicators.ipynb</span></code> for information on how to populate this table. We will use the special method <code class="docutils literal notranslate"><span class="pre">fetch_xarray</span></code> to get a labeled array of shape (n_time, n_mark_features, n_electrodes). Time will be in 2 ms bins, where it will be NaN if no spike occurs and the value of the spike features if a spike occured.</p>
+<p>If more than one spike is in a single time bin from a single tetrode, we just average the marks. Technically this isn’t ideal, we should use all the marks, but it doesn’t seem to happen that often and the decodes seem robust to it.</p>
+<p>The UnitMarksIndicator table depends on an interval from the interval list and a sampling rate.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">spyglass.decoding.clusterless</span> <span class="kn">import</span> <span class="n">UnitMarksIndicator</span>
+
+
+<span class="n">marks</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">UnitMarksIndicator</span>
+    <span class="o">&amp;</span> <span class="p">{</span>
+        <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">,</span>
+        <span class="s2">&quot;sort_interval_name&quot;</span><span class="p">:</span> <span class="s2">&quot;runs_noPrePostTrialTimes raw data valid times&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;filter_parameter_set_name&quot;</span><span class="p">:</span> <span class="s2">&quot;franklab_default_hippocampus&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;unit_inclusion_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;all2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mark_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pos 1 valid times&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sampling_rate&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch_xarray</span><span class="p">()</span>
+
+<span class="n">marks</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/stelmo/nwb/analysis/chimi20200216_new_7M0E8ERPE7.nwb
+/stelmo/nwb/analysis/chimi20200216_new_6WW86B509M.nwb
+/stelmo/nwb/analysis/chimi20200216_new_TLD0MCIC5H.nwb
+/stelmo/nwb/analysis/chimi20200216_new_7BEQDOTX3E.nwb
+/stelmo/nwb/analysis/chimi20200216_new_F8QVNUMVJS.nwb
+/stelmo/nwb/analysis/chimi20200216_new_BVZKYWREUE.nwb
+/stelmo/nwb/analysis/chimi20200216_new_3HMJON557D.nwb
+/stelmo/nwb/analysis/chimi20200216_new_QGMZ5ESFVA.nwb
+/stelmo/nwb/analysis/chimi20200216_new_1KRVBBCP2N.nwb
+/stelmo/nwb/analysis/chimi20200216_new_9E2Z0R6TLO.nwb
+/stelmo/nwb/analysis/chimi20200216_new_ALRF0STB1P.nwb
+/stelmo/nwb/analysis/chimi20200216_new_F2TDZW8LRY.nwb
+/stelmo/nwb/analysis/chimi20200216_new_LTEU71Z21T.nwb
+/stelmo/nwb/analysis/chimi20200216_new_KT4E4LIYAI.nwb
+/stelmo/nwb/analysis/chimi20200216_new_KOIRLX6R6X.nwb
+/stelmo/nwb/analysis/chimi20200216_new_4S01EA6NVN.nwb
+/stelmo/nwb/analysis/chimi20200216_new_ATQO860QOB.nwb
+/stelmo/nwb/analysis/chimi20200216_new_H3E2HYMEJA.nwb
+/stelmo/nwb/analysis/chimi20200216_new_4KJ4XVBKW3.nwb
+/stelmo/nwb/analysis/chimi20200216_new_0V98T6HQHX.nwb
+/stelmo/nwb/analysis/chimi20200216_new_A5FBXFDZMD.nwb
+/stelmo/nwb/analysis/chimi20200216_new_A5ELOH1L7Y.nwb
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 20px 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: none;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (time: 655645, marks: 4, electrodes: 22)&gt;
+array([[[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       ...,
+
+       [[ -99.,   nan,   nan, ...,   nan,   nan,   nan],
+        [-100.,   nan,   nan, ...,   nan,   nan,   nan],
+        [ -94.,   nan,   nan, ...,   nan,   nan,   nan],
+        [-104.,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]]])
+Coordinates:
+  * time        (time) float64 1.582e+09 1.582e+09 ... 1.582e+09 1.582e+09
+  * marks       (marks) &lt;U14 &#x27;amplitude_0000&#x27; ... &#x27;amplitude_0003&#x27;
+  * electrodes  (electrodes) int64 0 1 2 3 5 6 7 8 9 ... 15 16 17 18 19 21 22 23</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>time</span>: 655645</li><li><span class='xr-has-index'>marks</span>: 4</li><li><span class='xr-has-index'>electrodes</span>: 22</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-71e6404a-2661-46d6-a43b-f888ef566f9e' class='xr-array-in' type='checkbox' checked><label for='section-71e6404a-2661-46d6-a43b-f888ef566f9e' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>nan nan nan nan nan -170.0 nan nan ... nan nan nan nan nan nan nan nan</span></div><div class='xr-array-data'><pre>array([[[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       ...,
+
+       [[ -99.,   nan,   nan, ...,   nan,   nan,   nan],
+        [-100.,   nan,   nan, ...,   nan,   nan,   nan],
+        [ -94.,   nan,   nan, ...,   nan,   nan,   nan],
+        [-104.,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]],
+
+       [[  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan],
+        [  nan,   nan,   nan, ...,   nan,   nan,   nan]]])</pre></div></div></li><li class='xr-section-item'><input id='section-18203983-24e7-4748-b3c0-d408721c6c47' class='xr-section-summary-in' type='checkbox'  checked><label for='section-18203983-24e7-4748-b3c0-d408721c6c47' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>time</span></div><div class='xr-var-dims'>(time)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.582e+09 1.582e+09 ... 1.582e+09</div><input id='attrs-9568e4e0-02e2-420b-9143-bf4a3470c1c8' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9568e4e0-02e2-420b-9143-bf4a3470c1c8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e283e30-ed57-44d6-b917-627b8ffd86cc' class='xr-var-data-in' type='checkbox'><label for='data-3e283e30-ed57-44d6-b917-627b8ffd86cc' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([1.581887e+09, 1.581887e+09, 1.581887e+09, ..., 1.581888e+09,
+       1.581888e+09, 1.581888e+09])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>marks</span></div><div class='xr-var-dims'>(marks)</div><div class='xr-var-dtype'>&lt;U14</div><div class='xr-var-preview xr-preview'>&#x27;amplitude_0000&#x27; ... &#x27;amplitude_...</div><input id='attrs-d2673eaa-5f0f-4a11-9b68-d53d410c7fb3' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d2673eaa-5f0f-4a11-9b68-d53d410c7fb3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-99f1ecc1-7bcc-4dbb-938c-2a69a17a0088' class='xr-var-data-in' type='checkbox'><label for='data-99f1ecc1-7bcc-4dbb-938c-2a69a17a0088' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([&#x27;amplitude_0000&#x27;, &#x27;amplitude_0001&#x27;, &#x27;amplitude_0002&#x27;, &#x27;amplitude_0003&#x27;],
+      dtype=&#x27;&lt;U14&#x27;)</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>electrodes</span></div><div class='xr-var-dims'>(electrodes)</div><div class='xr-var-dtype'>int64</div><div class='xr-var-preview xr-preview'>0 1 2 3 5 6 7 ... 17 18 19 21 22 23</div><input id='attrs-41f67805-c692-4fba-99cf-b5cf249e333c' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-41f67805-c692-4fba-99cf-b5cf249e333c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-be2be961-bf68-4ebe-9029-fa7fd0bd312a' class='xr-var-data-in' type='checkbox'><label for='data-be2be961-bf68-4ebe-9029-fa7fd0bd312a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([ 0,  1,  2,  3,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+       19, 21, 22, 23])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-e27dae59-32f2-4b7b-9e67-e35b4c03866a' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-e27dae59-32f2-4b7b-9e67-e35b4c03866a' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div>
+</div>
+<p>After you get the marks, it is important to visualize them to make sure they look right. We can use the <code class="docutils literal notranslate"><span class="pre">plot_all_marks</span></code> method of UnitMarksIndicator to quickly plot each mark feature against the other for each electrode.</p>
+<p>Here it is important to look for things that look overly correlated (strong diagonal on the off-diagonal plots) and for extreme amplitudes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">UnitMarksIndicator</span><span class="o">.</span><span class="n">plot_all_marks</span><span class="p">(</span><span class="n">marks</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_0.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_0.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_1.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_2.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_2.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_3.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_3.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_4.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_4.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_5.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_5.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_6.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_6.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_7.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_7.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_8.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_8.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_9.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_9.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_10.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_10.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_11.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_11.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_12.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_12.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_13.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_13.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_14.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_14.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_15.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_15.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_16.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_16.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_17.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_17.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_18.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_18.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_19.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_19.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_20.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_20.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_21.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_7_21.png" />
+</div>
+</div>
+</section>
+<section id="Position">
+<h1>Position<a class="headerlink" href="#Position" title="Permalink to this heading">#</a></h1>
+<p>After the marks look good, you’ll need to load/populate the 2D position data. This comes from the <code class="docutils literal notranslate"><span class="pre">IntervalPositionInfo</span></code> table. Refer to the notebook <code class="docutils literal notranslate"><span class="pre">4_position_information.ipynb</span></code> for more information. Note that we will need to upsample the position data (which is done here via the <code class="docutils literal notranslate"><span class="pre">default_decoding</span></code> parameters) to match the sampling frequency that we intend to decode in (2 ms time bins or 500 Hz sampling rate)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyglass.common.common_position</span> <span class="kn">import</span> <span class="n">IntervalPositionInfo</span>
+
+
+<span class="n">position_key</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">,</span>
+    <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pos 1 valid times&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;position_info_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default_decoding&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">position_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">IntervalPositionInfo</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">position_key</span><span class="p">)</span><span class="o">.</span><span class="n">fetch1_dataframe</span><span class="p">()</span>
+
+<span class="n">position_info</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/stelmo/nwb/analysis/chimi20200216_new_6YC9LPAR7S.nwb
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>head_position_x</th>
+      <th>head_position_y</th>
+      <th>head_orientation</th>
+      <th>head_velocity_x</th>
+      <th>head_velocity_y</th>
+      <th>head_speed</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>91.051650</td>
+      <td>211.127050</td>
+      <td>2.680048</td>
+      <td>1.741550</td>
+      <td>2.301478</td>
+      <td>2.886139</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>91.039455</td>
+      <td>211.144123</td>
+      <td>3.003241</td>
+      <td>1.827555</td>
+      <td>2.333931</td>
+      <td>2.964320</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>91.027260</td>
+      <td>211.161196</td>
+      <td>3.008398</td>
+      <td>1.915800</td>
+      <td>2.366668</td>
+      <td>3.044898</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>91.015065</td>
+      <td>211.178268</td>
+      <td>3.012802</td>
+      <td>2.006286</td>
+      <td>2.399705</td>
+      <td>3.127901</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>91.002871</td>
+      <td>211.195341</td>
+      <td>3.017242</td>
+      <td>2.099012</td>
+      <td>2.433059</td>
+      <td>3.213352</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>182.158583</td>
+      <td>201.299625</td>
+      <td>-0.944304</td>
+      <td>0.057520</td>
+      <td>-0.356012</td>
+      <td>0.360629</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>182.158583</td>
+      <td>201.296373</td>
+      <td>-0.942329</td>
+      <td>0.053954</td>
+      <td>-0.356343</td>
+      <td>0.360404</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>182.158583</td>
+      <td>201.293121</td>
+      <td>-0.940357</td>
+      <td>0.050477</td>
+      <td>-0.356407</td>
+      <td>0.359964</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>182.158583</td>
+      <td>201.289869</td>
+      <td>-0.953059</td>
+      <td>0.047091</td>
+      <td>-0.356212</td>
+      <td>0.359312</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>182.158583</td>
+      <td>201.286617</td>
+      <td>-0.588081</td>
+      <td>0.043796</td>
+      <td>-0.355764</td>
+      <td>0.358450</td>
+    </tr>
+  </tbody>
+</table>
+<p>655645 rows × 6 columns</p>
+</div></div>
+</div>
+<p>It is important to visualize the 2D position to make sure there are no weird values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">position_info</span><span class="o">.</span><span class="n">head_position_x</span><span class="p">,</span> <span class="n">position_info</span><span class="o">.</span><span class="n">head_position_y</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&lt;matplotlib.lines.Line2D at 0x7f6bfabcd280&gt;]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_11_1.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_11_1.png" />
+</div>
+</div>
+<p>Next we load the linearized position tables. Refer to the notebook <code class="docutils literal notranslate"><span class="pre">5_linearization.ipynb</span></code> for more information on how to create the linear position information.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyglass.common.common_position</span> <span class="kn">import</span> <span class="n">IntervalLinearizedPosition</span>
+
+<span class="n">linearization_key</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;position_info_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default_decoding&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">nwb_copy_file_name</span><span class="p">,</span>
+    <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;pos 1 valid times&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;track_graph_name&quot;</span><span class="p">:</span> <span class="s2">&quot;6 arm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;linearization_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">linear_position_df</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">IntervalLinearizedPosition</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">linearization_key</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch1_dataframe</span><span class="p">()</span>
+
+<span class="n">linear_position_df</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/stelmo/nwb/analysis/chimi20200216_new_0YEJJLYTSM.nwb
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>linear_position</th>
+      <th>track_segment_id</th>
+      <th>projected_x_position</th>
+      <th>projected_y_position</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>412.042773</td>
+      <td>0</td>
+      <td>90.802281</td>
+      <td>210.677533</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>412.061718</td>
+      <td>0</td>
+      <td>90.785714</td>
+      <td>210.686724</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>412.080664</td>
+      <td>0</td>
+      <td>90.769147</td>
+      <td>210.695914</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>412.099610</td>
+      <td>0</td>
+      <td>90.752579</td>
+      <td>210.705105</td>
+    </tr>
+    <tr>
+      <th>1.581887e+09</th>
+      <td>412.118556</td>
+      <td>0</td>
+      <td>90.736012</td>
+      <td>210.714296</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>340.325042</td>
+      <td>1</td>
+      <td>175.434739</td>
+      <td>212.920160</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>340.323413</td>
+      <td>1</td>
+      <td>175.433329</td>
+      <td>212.919345</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>340.321785</td>
+      <td>1</td>
+      <td>175.431919</td>
+      <td>212.918529</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>340.320156</td>
+      <td>1</td>
+      <td>175.430509</td>
+      <td>212.917713</td>
+    </tr>
+    <tr>
+      <th>1.581888e+09</th>
+      <td>340.318527</td>
+      <td>1</td>
+      <td>175.429100</td>
+      <td>212.916898</td>
+    </tr>
+  </tbody>
+</table>
+<p>655645 rows × 4 columns</p>
+</div></div>
+</div>
+<p>We should also quickly visualize the linear position in order to sanity check the values. Here we plot the 2D position projected to its corresponding 1D segment.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">linear_position_df</span><span class="o">.</span><span class="n">projected_x_position</span><span class="p">,</span>
+    <span class="n">linear_position_df</span><span class="o">.</span><span class="n">projected_y_position</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">linear_position_df</span><span class="o">.</span><span class="n">track_segment_id</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x7fb80565b5e0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_15_1.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_15_1.png" />
+</div>
+</div>
+<p>We should also plot the linearized position itself to make sure it is okay.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">linear_position_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">linear_position_df</span><span class="o">.</span><span class="n">linear_position</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">linear_position_df</span><span class="o">.</span><span class="n">track_segment_id</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab20&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.collections.PathCollection at 0x7fb8055de0a0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_17_1.png" src="../../_images/_copied_over_notebooks_8_1D_Clusterless_Decoding_17_1.png" />
+</div>
+</div>
+<p>Okay now that we’ve looked at the data, we should quickly verify that all our data is the same size. It may not be due to the valid intervals of the neural and position data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">position_info</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">marks</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">linear_position_df</span><span class="o">.</span><span class="n">shape</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+((655645, 6), (655645, 4, 22), (655645, 4))
+</pre></div></div>
+</div>
+<p>We also want to make sure we have valid ephys data and valid position data for decoding. Here we only have one valid time interval, but if we had more than one, we should decode on each interval separately.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyglass.common.common_interval</span> <span class="kn">import</span> <span class="n">interval_list_intersect</span>
+<span class="kn">from</span> <span class="nn">spyglass.common</span> <span class="kn">import</span> <span class="n">IntervalList</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">key</span><span class="p">[</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;02_r1&quot;</span>
+<span class="n">key</span><span class="p">[</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nwb_copy_file_name</span>
+
+<span class="n">interval</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">IntervalList</span>
+    <span class="o">&amp;</span> <span class="p">{</span>
+        <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch1</span><span class="p">(</span><span class="s2">&quot;valid_times&quot;</span><span class="p">)</span>
+
+<span class="n">valid_ephys_times</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">IntervalList</span>
+    <span class="o">&amp;</span> <span class="p">{</span>
+        <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="s2">&quot;raw data valid times&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch1</span><span class="p">(</span><span class="s2">&quot;valid_times&quot;</span><span class="p">)</span>
+<span class="n">position_interval_names</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">IntervalPositionInfo</span>
+    <span class="o">&amp;</span> <span class="p">{</span>
+        <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;position_info_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default_decoding&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">&quot;interval_list_name&quot;</span><span class="p">)</span>
+<span class="n">valid_pos_times</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+        <span class="n">IntervalList</span>
+        <span class="o">&amp;</span> <span class="p">{</span>
+            <span class="s2">&quot;nwb_file_name&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;nwb_file_name&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;interval_list_name&quot;</span><span class="p">:</span> <span class="n">pos_interval_name</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">fetch1</span><span class="p">(</span><span class="s2">&quot;valid_times&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">pos_interval_name</span> <span class="ow">in</span> <span class="n">position_interval_names</span>
+<span class="p">]</span>
+
+<span class="n">intersect_interval</span> <span class="o">=</span> <span class="n">interval_list_intersect</span><span class="p">(</span>
+    <span class="n">interval_list_intersect</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="n">valid_ephys_times</span><span class="p">),</span> <span class="n">valid_pos_times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">valid_time_slice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">intersect_interval</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">intersect_interval</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">valid_time_slice</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+slice(1581886916.3153033, 1581888227.5987928, None)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_position_df</span> <span class="o">=</span> <span class="n">linear_position_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid_time_slice</span><span class="p">]</span>
+<span class="n">marks</span> <span class="o">=</span> <span class="n">marks</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">valid_time_slice</span><span class="p">)</span>
+<span class="n">position_info</span> <span class="o">=</span> <span class="n">position_info</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid_time_slice</span><span class="p">]</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">position_info</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">marks</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">linear_position_df</span><span class="o">.</span><span class="n">shape</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+((655643, 6), (655643, 4, 22), (655643, 4))
+</pre></div></div>
+</div>
+</section>
+<section id="Decoding">
+<h1>Decoding<a class="headerlink" href="#Decoding" title="Permalink to this heading">#</a></h1>
+<p>Okay, now having sanity checked the data, we can finally get to decoding. In the future this will be a pipeline, but for now it is manual as the table structure is still being prototyped.</p>
+<p>In order to set the parameters, we can fetch the default parameters and modify them.</p>
+<p>For 1D decoding, it is best to pass in the track graph and track graph parameters we used for linearization in order for the random walk to be handled properly. We can also set the amount of smoothing in the position and mark dimensions: <code class="docutils literal notranslate"><span class="pre">position_std</span></code> and <code class="docutils literal notranslate"><span class="pre">mark_std</span></code> respectively. Finally we set the <code class="docutils literal notranslate"><span class="pre">block_size</span></code>, which controls how many samples get processed at a time so that we don’t run out of GPU memory.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">replay_trajectory_classification.environments</span> <span class="kn">import</span> <span class="n">Environment</span>
+<span class="kn">from</span> <span class="nn">spyglass.common.common_position</span> <span class="kn">import</span> <span class="n">TrackGraph</span>
+<span class="kn">from</span> <span class="nn">spyglass.decoding.clusterless</span> <span class="kn">import</span> <span class="n">ClusterlessClassifierParameters</span>
+
+<span class="kn">import</span> <span class="nn">pprint</span>
+
+
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ClusterlessClassifierParameters</span><span class="p">()</span>
+    <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;classifier_param_name&quot;</span><span class="p">:</span> <span class="s2">&quot;default_decoding_gpu&quot;</span><span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fetch1</span><span class="p">()</span>
+
+<span class="n">track_graph</span> <span class="o">=</span> <span class="p">(</span><span class="n">TrackGraph</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;track_graph_name&quot;</span><span class="p">:</span> <span class="s2">&quot;6 arm&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">get_networkx_track_graph</span><span class="p">()</span>
+<span class="n">track_graph_params</span> <span class="o">=</span> <span class="p">(</span><span class="n">TrackGraph</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">{</span><span class="s2">&quot;track_graph_name&quot;</span><span class="p">:</span> <span class="s2">&quot;6 arm&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">fetch1</span><span class="p">()</span>
+
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;classifier_params&quot;</span><span class="p">][</span><span class="s2">&quot;environments&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Environment</span><span class="p">(</span>
+        <span class="n">track_graph</span><span class="o">=</span><span class="n">track_graph</span><span class="p">,</span>
+        <span class="n">edge_order</span><span class="o">=</span><span class="n">track_graph_params</span><span class="p">[</span><span class="s2">&quot;linear_edge_order&quot;</span><span class="p">],</span>
+        <span class="n">edge_spacing</span><span class="o">=</span><span class="n">track_graph_params</span><span class="p">[</span><span class="s2">&quot;linear_edge_spacing&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;classifier_params&quot;</span><span class="p">][</span>
+    <span class="s2">&quot;clusterless_algorithm&quot;</span>
+<span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;multiunit_likelihood_integer_gpu&quot;</span>
+<span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;classifier_params&quot;</span><span class="p">][</span><span class="s2">&quot;clusterless_algorithm_params&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;mark_std&quot;</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">,</span>
+    <span class="s2">&quot;position_std&quot;</span><span class="p">:</span> <span class="mf">6.0</span><span class="p">,</span>
+    <span class="s2">&quot;block_size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="mi">12</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;classifier_param_name&#39;: &#39;default_decoding_gpu&#39;,
+ &#39;classifier_params&#39;: {&#39;clusterless_algorithm&#39;: &#39;multiunit_likelihood_integer_gpu&#39;,
+                       &#39;clusterless_algorithm_params&#39;: {&#39;block_size&#39;: 4096,
+                                                        &#39;mark_std&#39;: 24.0,
+                                                        &#39;position_std&#39;: 6.0},
+                       &#39;continuous_transition_types&#39;: [[RandomWalk(environment_name=&#39;&#39;, movement_var=6.0, movement_mean=0.0, use_diffusion=False),
+                                                        Uniform(environment_name=&#39;&#39;, environment2_name=None)],
+                                                       [Uniform(environment_name=&#39;&#39;, environment2_name=None),
+                                                        Uniform(environment_name=&#39;&#39;, environment2_name=None)]],
+                       &#39;discrete_transition_type&#39;: DiagonalDiscrete(diagonal_value=0.98),
+                       &#39;environments&#39;: [Environment(environment_name=&#39;&#39;, place_bin_size=2.0, track_graph=&lt;networkx.classes.graph.Graph object at 0x7fb807560cd0&gt;, edge_order=[(3, 6), (6, 8), (6, 9), (3, 1), (1, 2), (1, 0), (3, 4), (4, 5), (4, 7)], edge_spacing=15, is_track_interior=None, position_range=None, infer_track_interior=True, fill_holes=False, dilate=False)],
+                       &#39;infer_track_interior&#39;: True,
+                       &#39;initial_conditions_type&#39;: UniformInitialConditions(),
+                       &#39;observation_models&#39;: None},
+ &#39;fit_params&#39;: {},
+ &#39;predict_params&#39;: {&#39;is_compute_acausal&#39;: True,
+                    &#39;state_names&#39;: [&#39;Continuous&#39;, &#39;Uniform&#39;],
+                    &#39;use_gpu&#39;: True}}
+</pre></div></div>
+</div>
+<p>After we set the parameters, we can run the decoding. Here we are running this on the first GPU device with <code class="docutils literal notranslate"><span class="pre">cp.dua.Device(0)</span></code>. See the <code class="docutils literal notranslate"><span class="pre">Decoding_with_GPUs_on_the_GPU_cluster.ipynb</span></code> notebook for more information on how to use other GPUs.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">replay_trajectory_classification</span> <span class="kn">import</span> <span class="n">ClusterlessClassifier</span>
+<span class="kn">import</span> <span class="nn">cupy</span> <span class="k">as</span> <span class="nn">cp</span>
+
+<span class="k">with</span> <span class="n">cp</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">ClusterlessClassifier</span><span class="p">(</span><span class="o">**</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;classifier_params&quot;</span><span class="p">])</span>
+    <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+        <span class="n">position</span><span class="o">=</span><span class="n">linear_position_df</span><span class="o">.</span><span class="n">linear_position</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">multiunits</span><span class="o">=</span><span class="n">marks</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;fit_params&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+        <span class="n">multiunits</span><span class="o">=</span><span class="n">marks</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="n">linear_position_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;predict_params&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+12-Sep-22 12:15:15 Fitting initial conditions...
+12-Sep-22 12:15:15 Fitting continuous state transition...
+12-Sep-22 12:15:15 Fitting discrete state transition
+12-Sep-22 12:15:15 Fitting multiunits...
+12-Sep-22 12:15:18 Estimating likelihood...
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2bc5b8a5ec884133b0ee926aa57f5ca8", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+12-Sep-22 12:15:32 Estimating causal posterior...
+12-Sep-22 12:18:49 Estimating acausal posterior...
+12-Sep-22 12:26:34 Done!
+</pre></div></div>
+</div>
+</section>
+<section id="Visualization">
+<h1>Visualization<a class="headerlink" href="#Visualization" title="Permalink to this heading">#</a></h1>
+<p>Finally, we can plot the decodes to make sure they make sense. We will use figurl to make an interactive figure. The function <code class="docutils literal notranslate"><span class="pre">create_interactive_1D_decoding_figurl</span></code> will return a URL that will lead you to the interactive figure. Note for this figure that you need to be running an interactive sorting view backend.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spyglass.decoding.visualization</span> <span class="kn">import</span> <span class="n">create_interactive_1D_decoding_figurl</span>
+<span class="o">%</span><span class="k">load_ext</span> snakeviz
+
+<span class="n">create_interactive_1D_decoding_figurl</span><span class="p">(</span>
+        <span class="n">position_info</span><span class="p">,</span>
+        <span class="n">linear_position_df</span><span class="p">,</span>
+        <span class="n">classifier</span><span class="p">,</span>
+        <span class="n">results</span><span class="p">,</span>
+        <span class="n">spikes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">visualization_name</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span>
+        <span class="n">segment_size</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+        <span class="n">multiscale_factor</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: create_position_plot is deprecated. Instead use vv.PositionPlot(...). See tests/test_position_plot.py
+Computing sha1 of /stelmo/nwb/.kachery-cloud/tmp_WUd2b9mq/file.npy
+/stelmo/nwb/.kachery-cloud/tmp_VGviN8q9
+Creating segment/1/0
+Creating segment/1/1
+Creating segment/1/2
+Creating segment/1/3
+Creating segment/1/4
+Creating segment/1/5
+Creating segment/1/6
+Creating segment/3/0
+Creating segment/3/1
+Creating segment/3/2
+Creating segment/9/0
+Creating segment/27/0
+Creating segment/81/0
+Creating segment/243/0
+Creating segment/729/0
+Creating segment/2187/0
+Creating segment/6561/0
+Creating segment/19683/0
+Creating segment/59049/0
+Creating segment/177147/0
+Creating segment/531441/0
+Computing sha1 of /stelmo/nwb/.kachery-cloud/tmp_VGviN8q9/live_position_pdf_plot.h5
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;https://figurl.org/f?v=gs://figurl/spikesortingview-9&amp;d=sha1://319b25199f81cc30d84f8eed471309b419c9b95d&amp;project=lqqrbobsev&amp;label=test&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"2bc5b8a5ec884133b0ee926aa57f5ca8": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HBoxModel", "state": {"children": ["IPY_MODEL_c68039c2eb7a4d64b2b20338b144d1a1", "IPY_MODEL_9a3481a91591494f8eaec53e4c7a5988", "IPY_MODEL_e72e9c7c2c4f4e7690d5597ecf511b19"], "layout": "IPY_MODEL_f91d08d3bc9243ada56ad52be76610ea"}}, "620d93e0c0d041c595395d730a5a82ed": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "ProgressStyleModel", "state": {"description_width": ""}}, "678c21ca9b8d407a8ebc0f543e90ddfc": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "8cf55d0e0a2040daa3986dfc0195e97c": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "9a3481a91591494f8eaec53e4c7a5988": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "FloatProgressModel", "state": {"bar_style": "success", "layout": "IPY_MODEL_8cf55d0e0a2040daa3986dfc0195e97c", "max": 22, "style": "IPY_MODEL_620d93e0c0d041c595395d730a5a82ed", "value": 22}}, "baffd8c133e541ee82f3efd3b88eb75a": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "c68039c2eb7a4d64b2b20338b144d1a1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_fc4941ad08434ef888ef8017231a5377", "style": "IPY_MODEL_678c21ca9b8d407a8ebc0f543e90ddfc", "value": "n_electrodes: 100%"}}, "e72e9c7c2c4f4e7690d5597ecf511b19": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLModel", "state": {"layout": "IPY_MODEL_baffd8c133e541ee82f3efd3b88eb75a", "style": "IPY_MODEL_ea111f2462964492a57fe5795c4a97bc", "value": " 22/22 [00:11&lt;00:00,  2.47it/s]"}}, "ea111f2462964492a57fe5795c4a97bc": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "HTMLStyleModel", "state": {"description_width": "", "font_size": null, "text_color": null}}, "f91d08d3bc9243ada56ad52be76610ea": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}, "fc4941ad08434ef888ef8017231a5377": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {}}}, "version_major": 2, "version_minor": 0}
+</script></section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                <a href="../../copyright.html">Copyright</a> &#169; 2020 - Present, Loren Frank
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/text-adjustments.js"></script>
+    </body>
+</html>
