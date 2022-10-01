@@ -35,36 +35,29 @@ conda install -c conda-forge pyfftw
 
 ### Setting up database access
 
-1. Ask Loren or Eric to set up an account for you on the Frank lab `datajoint` database. Note that you have to be connected to UCSF LAN to access this server.
+1. To use `spyglass`, you need to have access to a MySQL database. If your lab already administers a database, connect to it by setting `datajoint` configurations. If you want to run your own database, consult instructions in [datajoint tutorial](https://tutorials.datajoint.org/setting-up/get-database.html) and/or [our tutorial notebook](./notebooks/docker_mysql_tutorial.ipynb).
 
-   > If you're not affiliated with UCSF or if you are just looking to try out `spyglass`, then you will need to set up a different MySQL server. For example, you can set up your own local server with a Docker image of a MySQL server configured for Datajoint (see [instructions](https://tutorials.datajoint.io/setting-up/local-database.html) and/or [tutorial notebook](./notebooks/docker_mysql_tutorial.ipynb)).
+   > If you're a member of the Frank lab, ask Loren or Eric.
 
-2. Add the following environment variables (e.g. in `~/.bashrc`). We assumes that you are interacting with the database on a computer that has mounted `stelmo` at `/stelmo` (if the mount location is different, change accordingly). For this to take effect, log out and log back in, or run `source ~/.bashrc` in the terminal.
-
-     ```bash
-     export SPYGLASS_BASE_DIR="/stelmo/nwb/"
-     export SPYGLASS_RECORDING_DIR="/stelmo/nwb/recording"
-     export SPYGLASS_SORTING_DIR="/stelmo/nwb/sorting"
-     export SPYGLASS_WAVEFORMS_DIR="/stelmo/nwb/waveforms"
-     export SPYGLASS_TEMP_DIR="/stelmo/nwb/tmp"
-     export KACHERY_DAEMON_HOST="typhoon"
-     export KACHERY_DAEMON_PORT="14747"
-     export KACHERY_STORAGE_DIR="/stelmo/nwb/kachery-storage"
-     export KACHERY_TEMP_DIR="/stelmo/nwb/tmp"
-     export FIGURL_CHANNEL="franklab2"
-     export DJ_SUPPORT_FILEPATH_MANAGEMENT="TRUE"
-     ```
-
-     Note that a local SPYGLASS_TEMP_DIR (e.g. one on your machine) will speed up spike sorting, but make sure it has enough free space (ideally at least 500GB)
-
-3. Check if you have access to the `kachery` daemon. Open up a terminal, activate the conda environment, and type
+2. Add the following environment variables (e.g. in `~/.bashrc`). The following are specific to Frank lab so you may want to change `SPYGLASS_BASE_DIR`.
 
    ```bash
-   kachery-client info
+   export SPYGLASS_BASE_DIR="/stelmo/nwb"
+   export SPYGLASS_RECORDING_DIR="$SPYGLASS_BASE_DIR/recording"
+   export SPYGLASS_SORTING_DIR="$SPYGLASS_BASE_DIR/sorting"
+   export SPYGLASS_WAVEFORMS_DIR="$SPYGLASS_BASE_DIR/waveforms"
+   export SPYGLASS_TEMP_DIR="$SPYGLASS_BASE_DIR/tmp/spyglass"
+   export DJ_SUPPORT_FILEPATH_MANAGEMENT="TRUE"
    ```
 
-   If it says you do not have access to the daemon, ask Kyu to add your username to the `kachery-users` group.
-   > If you're running your own `kachery` daemon, then this doesn't apply.
+   Note that a local `SPYGLASS_TEMP_DIR` (e.g. one on your machine) will speed up spike sorting, but make sure it has enough free space (ideally at least 500GB)
+
+3. Set up [`kachery-cloud`](https://github.com/flatironinstitute/kachery-cloud) (if you are in Frank lab, skip this step). Once you have initialized a `kachery-cloud` directory, add the following environment variables (again, shown for Frank lab).
+
+   ```bash
+   export KACHERY_CLOUD_DIR="$SPYGLASS_BASE_DIR/.kachery-cloud"
+   export KACHERY_TEMP_DIR="$SPYGLASS_BASE_DIR/tmp"
+   ```
   
 4. Configure DataJoint. To connect to the Datajoint database, we have to specify information about it such as the hostname and the port. You should also change your password from the temporary one you were given. Go to the config directory, and run [`dj_config.py`](https://github.com/LorenFrankLab/spyglass/blob/master/config/dj_config.py) in the terminal with your username:
 
@@ -72,7 +65,5 @@ conda install -c conda-forge pyfftw
     cd config # change to the config directory
     python dj_config.py <username> # run the configuration script
     ```
-
-   > Again, if you're using your own MySQL server, then you may need to change the other settings as well.
 
 Finally, open up a python console (e.g. run `ipython` from terminal) and import `spyglass` to check that the installation has worked.
