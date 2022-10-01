@@ -222,7 +222,11 @@ table.modindextable td {
 /* -- general body styles --------------------------------------------------- */
 
 div.body {
+<<<<<<< HEAD
     min-width: 450px;
+=======
+    min-width: 360px;
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
     max-width: 800px;
 }
 
@@ -237,6 +241,7 @@ a.headerlink {
     visibility: hidden;
 }
 
+<<<<<<< HEAD
 a.brackets:before,
 span.brackets > a:before{
     content: "[";
@@ -247,6 +252,8 @@ span.brackets > a:after {
     content: "]";
 }
 
+=======
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 h1:hover > a.headerlink,
 h2:hover > a.headerlink,
 h3:hover > a.headerlink,
@@ -334,13 +341,23 @@ aside.sidebar {
 p.sidebar-title {
     font-weight: bold;
 }
+<<<<<<< HEAD
 
+=======
+nav.contents,
+aside.topic,
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 div.admonition, div.topic, blockquote {
     clear: left;
 }
 
 /* -- topics ---------------------------------------------------------------- */
+<<<<<<< HEAD
 
+=======
+nav.contents,
+aside.topic,
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 div.topic {
     border: 1px solid #ccc;
     padding: 7px;
@@ -379,6 +396,11 @@ div.body p.centered {
 
 div.sidebar > :last-child,
 aside.sidebar > :last-child,
+<<<<<<< HEAD
+=======
+nav.contents > :last-child,
+aside.topic > :last-child,
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 div.topic > :last-child,
 div.admonition > :last-child {
     margin-bottom: 0;
@@ -386,6 +408,11 @@ div.admonition > :last-child {
 
 div.sidebar::after,
 aside.sidebar::after,
+<<<<<<< HEAD
+=======
+nav.contents::after,
+aside.topic::after,
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 div.topic::after,
 div.admonition::after,
 blockquote::after {
@@ -428,10 +455,13 @@ table.docutils td, table.docutils th {
     border-bottom: 1px solid #aaa;
 }
 
+<<<<<<< HEAD
 table.footnote td, table.footnote th {
     border: 0 !important;
 }
 
+=======
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 th {
     text-align: left;
     padding-right: 5px;
@@ -614,6 +644,7 @@ ol.simple p,
 ul.simple p {
     margin-bottom: 0;
 }
+<<<<<<< HEAD
 
 dl.footnote > dt,
 dl.citation > dt {
@@ -628,6 +659,28 @@ dl.citation > dd {
 
 dl.footnote > dd:after,
 dl.citation > dd:after {
+=======
+aside.footnote > span,
+div.citation > span {
+    float: left;
+}
+aside.footnote > span:last-of-type,
+div.citation > span:last-of-type {
+  padding-right: 0.5em;
+}
+aside.footnote > p {
+  margin-left: 2em;
+}
+div.citation > p {
+  margin-left: 4em;
+}
+aside.footnote > p:last-of-type,
+div.citation > p:last-of-type {
+    margin-bottom: 0em;
+}
+aside.footnote > p:last-of-type:after,
+div.citation > p:last-of-type:after {
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
     content: "";
     clear: both;
 }
@@ -644,10 +697,13 @@ dl.field-list > dt {
     padding-right: 5px;
 }
 
+<<<<<<< HEAD
 dl.field-list > dt:after {
     content: ":";
 }
 
+=======
+>>>>>>> 1e0d8c7a111d76e2dc1ee839029cb806c974e0af
 dl.field-list > dd {
     padding-left: 0.5em;
     margin-top: 0em;

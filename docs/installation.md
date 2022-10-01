@@ -58,7 +58,7 @@ conda install -c conda-forge pyfftw
    export KACHERY_CLOUD_DIR="$SPYGLASS_BASE_DIR/.kachery-cloud"
    export KACHERY_TEMP_DIR="$SPYGLASS_BASE_DIR/tmp"
    ```
-  
+
 4. Configure DataJoint. To connect to the Datajoint database, we have to specify information about it such as the hostname and the port. You should also change your password from the temporary one you were given. Go to the config directory, and run [`dj_config.py`](https://github.com/LorenFrankLab/spyglass/blob/master/config/dj_config.py) in the terminal with your username:
 
     ```bash
