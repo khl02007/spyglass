@@ -1,7 +1,7 @@
 Installation
 ===============
 
-## Installing packages
+# Installing packages
 
 `spyglass` can be installed via `pip`:
 
@@ -33,7 +33,7 @@ WARNING: If you are on an M1 Mac, you need to install `pyfftw` via `conda` BEFOR
 conda install -c conda-forge pyfftw
 ```
 
-### Setting up database access
+# Setting up database access
 
 1. To use `spyglass`, you need to have access to a MySQL database. If your lab already administers a database, connect to it by setting `datajoint` configurations. If you want to run your own database, consult instructions in [datajoint tutorial](https://tutorials.datajoint.org/setting-up/get-database.html) and/or [our tutorial notebook](./notebooks/docker_mysql_tutorial.ipynb).
 
