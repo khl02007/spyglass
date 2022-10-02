@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="copyright" title="Copyright" href="copyright.html" /><link rel="next" title="Jupyter Notebooks Examples" href="tutorials.html" /><link rel="prev" title="Spyglass" href="index.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="copyright" title="Copyright" href="copyright.html" /><link rel="next" title="Tutorials" href="tutorials.html" /><link rel="prev" title="Spyglass" href="index.html" />
 
     <link rel="shortcut icon" href="_static/lorenLabImage.png"/><meta name="generator" content="sphinx-5.2.3, furo 2022.09.29"/>
         <title>Installation - Spyglass 0.1.1 documentation</title>
@@ -135,7 +135,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -159,8 +159,10 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">Home page</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installing-packages">Installing packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#setting-up-database-access">Setting up database access</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="tutorials.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="_copied_over/notebooks/0_intro.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="_copied_over/notebooks/1_spikesorting.html">Spike Sorting</a></li>
@@ -174,7 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="_copied_over/notebooks/docker_mysql_tutorial.html">MySQL Docker</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="_autosummary/spyglass.html">API reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="_autosummary/spyglass.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="_autosummary/spyglass.cli.html">spyglass.cli</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="_autosummary/spyglass.cli.cli.html">spyglass.cli.cli</a></li>
 </ul>
@@ -216,7 +218,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -224,8 +226,9 @@
         <article role="main">
           <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
+</section>
 <section id="installing-packages">
-<h2>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h2>
+<h1>Installing packages<a class="headerlink" href="#installing-packages" title="Permalink to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">spyglass</span></code> can be installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install spyglass-neuro
 </pre></div>
@@ -246,8 +249,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge pyfftw
 </pre></div>
 </div>
+</section>
 <section id="setting-up-database-access">
-<h3>Setting up database access<a class="headerlink" href="#setting-up-database-access" title="Permalink to this heading">#</a></h3>
+<h1>Setting up database access<a class="headerlink" href="#setting-up-database-access" title="Permalink to this heading">#</a></h1>
 <ol class="arabic">
 <li><p>To use <code class="docutils literal notranslate"><span class="pre">spyglass</span></code>, you need to have access to a MySQL database. If your lab already administers a database, connect to it by setting <code class="docutils literal notranslate"><span class="pre">datajoint</span></code> configurations. If you want to run your own database, consult instructions in <a class="reference external" href="https://tutorials.datajoint.org/setting-up/get-database.html">datajoint tutorial</a> and/or <span class="xref myst">our tutorial notebook</span>.</p>
 <blockquote>
@@ -280,8 +284,6 @@ python dj_config.py &lt;username&gt; <span class="c1"># run the configuration sc
 </ol>
 <p>Finally, open up a python console (e.g. run <code class="docutils literal notranslate"><span class="pre">ipython</span></code> from terminal) and import <code class="docutils literal notranslate"><span class="pre">spyglass</span></code> to check that the installation has worked.</p>
 </section>
-</section>
-</section>
 
         </article>
       </div>
@@ -293,7 +295,7 @@ python dj_config.py &lt;username&gt; <span class="c1"># run the configuration sc
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Jupyter Notebooks Examples</div>
+                <div class="title">Tutorials</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -328,30 +330,8 @@ python dj_config.py &lt;username&gt; <span class="c1"># run the configuration sc
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Installation</a><ul>
-<li><a class="reference internal" href="#installing-packages">Installing packages</a><ul>
-<li><a class="reference internal" href="#setting-up-database-access">Setting up database access</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>

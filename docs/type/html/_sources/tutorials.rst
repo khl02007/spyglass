@@ -1,4 +1,4 @@
-Jupyter Notebooks Examples
+Tutorials
 ##########################
 
 .. toctree::
