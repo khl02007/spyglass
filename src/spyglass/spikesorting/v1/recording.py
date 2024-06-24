@@ -20,6 +20,7 @@ from spyglass.common.common_interval import (
 from spyglass.common.common_lab import LabTeam
 from spyglass.common.common_nwbfile import AnalysisNwbfile, Nwbfile
 from spyglass.utils import SpyglassMixin, logger
+from datajoint.errors import DataJointError
 
 schema = dj.schema("spikesorting_v1_recording")
 
@@ -424,15 +425,11 @@ class SpikeSortingRecording(SpyglassMixin, dj.Computed):
         probe_type_by_channel = []
         electrode_group_by_channel = []
         for channel_id in channel_ids:
-            probe_type_by_channel.append(
-                (
-                    Electrode * Probe
-                    & {
-                        "nwb_file_name": nwb_file_name,
-                        "electrode_id": channel_id,
-                    }
-                ).fetch1("probe_type")
-            )
+            try:
+                ptype = (Electrode * Probe  & {"nwb_file_name": nwb_file_name, "electrode_id": channel_id,}).fetch1("probe_type")
+            except DataJointError:
+                ptype = "Unknown"
+            probe_type_by_channel.append(ptype)
             electrode_group_by_channel.append(
                 (
                     Electrode
